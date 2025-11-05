@@ -1,5 +1,5 @@
-import { useState, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useCallback, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import SteamEffect from './components/SteamEffect';
 import FloatingBaos from './components/FloatingBaos';
 import SocialLinks from './components/SocialLinks';
@@ -7,22 +7,34 @@ import Typewriter from './components/Typewriter';
 import VisitorCounter from './components/VisitorCounter';
 import TiltWrapper from './components/TiltWrapper';
 import AnimatedSteam from './components/AnimatedSteam';
-import FloatingIngredients from './components/FloatingIngredients';
 import InstagramCTA from './components/InstagramCTA';
+import LoadingScreen from './components/LoadingScreen';
 
 export default function App() {
   const [imageError, setImageError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleImageError = useCallback(() => {
     setImageError(true);
   }, []);
+
+  useEffect(() => {
+    // Show loading screen for 2.5 seconds
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <AnimatePresence mode="wait">
+      {isLoading ? (
+        <LoadingScreen key="loading" />
+      ) : (
+    <div key="main" className="relative min-h-screen overflow-hidden">
       {/* Layered Animated Steam Background */}
       <AnimatedSteam />
-
-      {/* Floating Food Ingredients */}
-      <FloatingIngredients />
 
       {/* Floating Background Shapes */}
       <FloatingBaos />
@@ -147,5 +159,7 @@ export default function App() {
         </motion.div>
       </div>
     </div>
+      )}
+    </AnimatePresence>
   );
 }
