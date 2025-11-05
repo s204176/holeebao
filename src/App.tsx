@@ -9,6 +9,9 @@ import AnimatedSteam from './components/AnimatedSteam';
 import InstagramCTA from './components/InstagramCTA';
 import LoadingScreen from './components/LoadingScreen';
 import AnimatedGridBackground from './components/AnimatedGridBackground';
+import RealVisitorCounter from './components/RealVisitorCounter';
+import CountdownTimer from './components/CountdownTimer';
+import BaoFacts from './components/BaoFacts';
 
 export default function App() {
   const [imageError, setImageError] = useState(false);
@@ -97,9 +100,9 @@ export default function App() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="text-center mb-6"
+          className="text-center mb-8"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-gray-800 mb-3">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-gray-800 mb-4">
             Something Delicious <br className="sm:hidden" />
             <span className="text-bao-golden">
               <Typewriter text="is Steaming..." delay={1000} speed={100} />
@@ -121,7 +124,7 @@ export default function App() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1.0, duration: 0.5, type: 'spring' }}
-          className="mb-4"
+          className="mb-6"
         >
           <div className="px-6 py-2 rounded-full bg-bao-golden/10 border-2 border-bao-golden/30 backdrop-blur-sm">
             <span className="text-bao-golden font-semibold text-base tracking-wider">
@@ -130,12 +133,17 @@ export default function App() {
           </div>
         </motion.div>
 
+        {/* Countdown Timer */}
+        <div className="mb-6">
+          <CountdownTimer targetDate={new Date('2026-02-01T12:00:00')} />
+        </div>
+
         {/* Location */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1, duration: 0.6 }}
-          className="mb-6 text-center"
+          className="mb-8 text-center"
         >
           <p className="text-gray-700 text-base font-medium">
             📍 Åboulevard 9, 1635 København V
@@ -146,12 +154,22 @@ export default function App() {
         </motion.div>
 
         {/* Instagram Call-to-Action */}
-        <div className="w-full max-w-xl mb-4">
+        <div className="w-full max-w-xl mb-6">
           <InstagramCTA />
         </div>
 
+        {/* Visitor Counter */}
+        <div className="mb-4">
+          <RealVisitorCounter />
+        </div>
+
+        {/* Bao Facts */}
+        <BaoFacts />
+
         {/* Social Media Links */}
-        <SocialLinks />
+        <div className="mt-6">
+          <SocialLinks />
+        </div>
 
         {/* Footer Note */}
         <motion.div
@@ -160,7 +178,7 @@ export default function App() {
           transition={{ delay: 1.8, duration: 0.6 }}
           className="mt-4 text-center text-bao-gray-dark text-xs"
         >
-          <p>Follow our journey • Opening Winter 2024</p>
+          <p>Follow our journey • Opening Early 2026</p>
         </motion.div>
       </div>
     </div>

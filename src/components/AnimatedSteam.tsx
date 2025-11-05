@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 
 const steamLayers = [
-  { id: 1, opacity: 0.15, duration: 25, delay: 0, blur: '60px' },
-  { id: 2, opacity: 0.1, duration: 30, delay: 2, blur: '80px' },
-  { id: 3, opacity: 0.2, duration: 20, delay: 4, blur: '40px' },
-  { id: 4, opacity: 0.12, duration: 35, delay: 1, blur: '70px' },
+  { id: 1, opacity: 0.08, duration: 25, delay: 0, blur: '50px' },
+  { id: 2, opacity: 0.05, duration: 30, delay: 2, blur: '60px' },
+  { id: 3, opacity: 0.1, duration: 20, delay: 4, blur: '30px' },
+  { id: 4, opacity: 0.06, duration: 35, delay: 1, blur: '55px' },
 ];
 
 export default function AnimatedSteam() {
