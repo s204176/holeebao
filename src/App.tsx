@@ -1,12 +1,14 @@
 import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import SteamEffect from './components/SteamEffect';
-import EmailSignup from './components/EmailSignup';
 import FloatingBaos from './components/FloatingBaos';
 import SocialLinks from './components/SocialLinks';
 import Typewriter from './components/Typewriter';
 import VisitorCounter from './components/VisitorCounter';
 import TiltWrapper from './components/TiltWrapper';
+import AnimatedSteam from './components/AnimatedSteam';
+import FloatingIngredients from './components/FloatingIngredients';
+import InstagramCTA from './components/InstagramCTA';
 
 export default function App() {
   const [imageError, setImageError] = useState(false);
@@ -16,6 +18,12 @@ export default function App() {
   }, []);
   return (
     <div className="relative min-h-screen overflow-hidden">
+      {/* Layered Animated Steam Background */}
+      <AnimatedSteam />
+
+      {/* Floating Food Ingredients */}
+      <FloatingIngredients />
+
       {/* Floating Background Shapes */}
       <FloatingBaos />
 
@@ -102,24 +110,27 @@ export default function App() {
           </div>
         </motion.div>
 
-        {/* Location Hint */}
+        {/* Location */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1, duration: 0.6 }}
           className="mb-10 text-center"
         >
-          <p className="text-gray-700 text-lg">
-            📍 Åboulevard area, Copenhagen
+          <p className="text-gray-700 text-lg font-medium">
+            📍 Åboulevard 9, 1635 København V
+          </p>
+          <p className="text-gray-500 text-sm mt-1">
+            Vesterbro, Copenhagen
           </p>
         </motion.div>
 
         {/* Visitor Counter */}
         <VisitorCounter targetCount={1247} />
 
-        {/* Email Signup Form */}
+        {/* Instagram Call-to-Action */}
         <div className="w-full max-w-2xl mb-8">
-          <EmailSignup />
+          <InstagramCTA />
         </div>
 
         {/* Social Media Links */}

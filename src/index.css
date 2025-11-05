@@ -9,7 +9,38 @@
 
   body {
     @apply font-sans antialiased;
-    background: linear-gradient(135deg, #FAFAFA 0%, #F5F1E8 100%);
+    background:
+      /* Bamboo texture pattern */
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 3px,
+        rgba(232, 184, 77, 0.03) 3px,
+        rgba(232, 184, 77, 0.03) 4px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(232, 184, 77, 0.03) 3px,
+        rgba(232, 184, 77, 0.03) 4px
+      ),
+      /* Warm gradient - dawn/dusk Copenhagen vibes */
+      radial-gradient(circle at top left, #FFF8E7 0%, #FAFAFA 40%),
+      linear-gradient(135deg, #F5F1E8 0%, #FAFAFA 50%, #FFF8E7 100%);
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 100%, rgba(232, 184, 77, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
   }
 }
 
