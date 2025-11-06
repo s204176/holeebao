@@ -62,7 +62,7 @@ export default function App() {
           >
             <ScrollVelocity
               texts={["Scroll to see what's steaming"]}
-              velocity={50}
+              velocity={85}
               className="font-display font-bold text-white px-16"
               scrollerClassName="text-xl sm:text-2xl md:text-3xl gap-16"
               numCopies={4}
