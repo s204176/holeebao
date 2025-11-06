@@ -113,15 +113,34 @@ export default function App() {
         {/* Coming Soon Badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+          }}
           transition={{ delay: 1.0, duration: 0.5, type: 'spring' }}
           className="mb-8"
         >
-          <div className="px-6 py-2 rounded-full bg-white/90 border-2 border-gray-900 backdrop-blur-sm shadow-lg">
-            <span className="text-gray-900 font-bold text-base tracking-wider">
+          <motion.div
+            animate={{
+              boxShadow: [
+                '0 0 20px rgba(0,0,0,0.1)',
+                '0 0 30px rgba(0,0,0,0.15)',
+                '0 0 20px rgba(0,0,0,0.1)'
+              ]
+            }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            className="px-10 py-4 rounded-full bg-white border-4 border-gray-900 shadow-2xl"
+          >
+            <motion.span
+              animate={{
+                opacity: [1, 0.9, 1]
+              }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              className="text-gray-900 font-black text-xl sm:text-2xl tracking-widest"
+            >
               COMING SOON
-            </span>
-          </div>
+            </motion.span>
+          </motion.div>
         </motion.div>
 
         {/* Instagram Button */}
