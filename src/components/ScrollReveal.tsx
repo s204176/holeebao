@@ -78,7 +78,7 @@ const ScrollReveal = ({
           trigger: el,
           scroller,
           start: 'top bottom',
-          end: 'bottom top+=30%',
+          end: 'bottom center',
           scrub: true,
           immediateRender: true
         }
@@ -97,7 +97,7 @@ const ScrollReveal = ({
             trigger: el,
             scroller,
             start: 'top bottom',
-            end: 'bottom top+=30%',
+            end: 'bottom center',
             scrub: true,
             immediateRender: true
           }
