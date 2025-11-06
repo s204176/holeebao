@@ -63,8 +63,9 @@ export default function App() {
             <ScrollVelocity
               texts={["Scroll to see what's steaming"]}
               velocity={50}
-              className="font-display font-bold text-white"
-              scrollerClassName="text-3xl sm:text-4xl md:text-5xl"
+              className="font-display font-bold text-white px-16"
+              scrollerClassName="text-xl sm:text-2xl md:text-3xl gap-16"
+              numCopies={4}
               scrollerStyle={{
                 textShadow: '0 0 30px rgba(232, 184, 77, 0.8), 0 0 60px rgba(232, 184, 77, 0.4)',
               }}
