@@ -67,7 +67,7 @@ export default function App() {
       </GradualBlur>
 
       {/* Single Steam Effect - Positioned Between Sections */}
-      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-48 h-48 z-20 pointer-events-none">
+      <div className="absolute left-1/2 -translate-x-1/2 w-48 h-48 z-20 pointer-events-none" style={{ top: 'calc(100vh - 8rem)' }}>
         <SteamEffect />
       </div>
 
