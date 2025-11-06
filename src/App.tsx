@@ -1,9 +1,5 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 import SteamEffect from './components/SteamEffect';
 import FloatingBaos from './components/FloatingBaos';
 import Typewriter from './components/Typewriter';
@@ -18,7 +14,6 @@ import ScrollVelocity from './components/ScrollVelocity';
 export default function App() {
   const [imageError, setImageError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const logoRef = useRef<HTMLDivElement>(null);
 
   // Track scroll position for steam fade effects
   const { scrollY } = useScroll();
@@ -38,59 +33,6 @@ export default function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  // GSAP ScrollTrigger for logo blur effect
-  useEffect(() => {
-    if (!logoRef.current || isLoading) return;
-
-    const logo = logoRef.current;
-    const logoImg = logo.querySelector('img');
-
-    if (!logoImg) return;
-
-    // Combined blur and drop-shadow animation on the image itself
-    gsap.fromTo(
-      logoImg,
-      {
-        filter: 'blur(10px) drop-shadow(0 0 20px rgba(232, 184, 77, 0.6)) drop-shadow(0 0 40px rgba(232, 184, 77, 0.3))',
-        opacity: 0,
-        willChange: 'filter, opacity'
-      },
-      {
-        ease: 'none',
-        opacity: 1,
-        filter: 'blur(0px) drop-shadow(0 0 20px rgba(232, 184, 77, 0.6)) drop-shadow(0 0 40px rgba(232, 184, 77, 0.3))',
-        scrollTrigger: {
-          trigger: logo,
-          start: 'top bottom',
-          end: 'top center',
-          scrub: true,
-          immediateRender: true
-        }
-      }
-    );
-
-    // Rotation animation on the container
-    gsap.fromTo(
-      logo,
-      { transformOrigin: '50% 50%', rotate: 4 },
-      {
-        ease: 'none',
-        rotate: 0,
-        scrollTrigger: {
-          trigger: logo,
-          start: 'top bottom',
-          end: 'top center',
-          scrub: true
-        }
-      }
-    );
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.vars.trigger === logo) trigger.kill();
-      });
-    };
-  }, [isLoading]);
 
   return (
     <AnimatePresence mode="wait">
@@ -152,8 +94,11 @@ export default function App() {
         <div className="text-center max-w-4xl w-full">
 
           {/* Logo */}
-          <div
-            ref={logoRef}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
             className="relative mb-8 inline-block"
           >
             {/* Logo Container with Steam Effect */}
@@ -177,6 +122,9 @@ export default function App() {
                         src="/assets/steamer_holeebao_v1.png"
                         alt="Holee Bao Logo"
                         className="w-full h-full object-contain drop-shadow-2xl"
+                        style={{
+                          filter: 'drop-shadow(0 0 20px rgba(232, 184, 77, 0.6)) drop-shadow(0 0 40px rgba(232, 184, 77, 0.3))',
+                        }}
                         onError={handleImageError}
                       />
                     ) : (
@@ -192,7 +140,7 @@ export default function App() {
                   </TiltWrapper>
                 </div>
               </div>
-          </div>
+          </motion.div>
 
           {/* Tagline with GSAP ScrollReveal */}
           <div className="mb-8">
