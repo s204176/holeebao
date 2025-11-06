@@ -149,47 +149,8 @@ export default function App() {
             </div>
           </ScrollReveal>
 
-          {/* Coming Soon Badge with ScrollReveal */}
-          <ScrollReveal delay={0.4} duration={0.5} direction="up">
-            <div className="mb-12">
-              <motion.div
-                animate={{
-                  boxShadow: [
-                    '0 0 30px rgba(232, 184, 77, 0.3), 0 0 60px rgba(232, 184, 77, 0.1)',
-                    '0 0 50px rgba(232, 184, 77, 0.5), 0 0 80px rgba(232, 184, 77, 0.2)',
-                    '0 0 30px rgba(232, 184, 77, 0.3), 0 0 60px rgba(232, 184, 77, 0.1)'
-                  ],
-                  y: [0, -5, 0]
-                }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                className="px-12 py-4 rounded-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border-4 border-bao-golden inline-block"
-              >
-                <motion.span
-                  animate={{
-                    textShadow: [
-                      '0 0 10px rgba(232, 184, 77, 0.5)',
-                      '0 0 20px rgba(232, 184, 77, 0.8)',
-                      '0 0 10px rgba(232, 184, 77, 0.5)'
-                    ]
-                  }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-                  className="text-bao-golden font-black text-2xl sm:text-3xl tracking-widest"
-                  style={{
-                    background: 'linear-gradient(45deg, #F5CF6B, #E8B84D, #D4A03A, #F5CF6B)',
-                    backgroundSize: '300% 300%',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
-                >
-                  COMING SOON
-                </motion.span>
-              </motion.div>
-            </div>
-          </ScrollReveal>
-
           {/* Instagram Button with ScrollReveal */}
-          <ScrollReveal delay={0.6} duration={0.6} direction="up">
+          <ScrollReveal delay={0.4} duration={0.6} direction="up">
             <motion.a
               href="https://www.instagram.com/holeebao.cph/"
               target="_blank"
