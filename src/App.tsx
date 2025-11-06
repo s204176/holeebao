@@ -158,7 +158,7 @@ export default function App() {
               baseOpacity={0}
               enableBlur={true}
               baseRotation={3}
-              blurStrength={3}
+              blurStrength={2}
               textClassName="text-white font-medium text-lg sm:text-xl"
             >
               Fresh steamed baos arriving soon to Copenhagen
