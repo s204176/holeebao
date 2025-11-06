@@ -66,6 +66,11 @@ export default function App() {
         </div>
       </GradualBlur>
 
+      {/* Single Steam Effect - Positioned Between Sections */}
+      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-48 h-48 z-20 pointer-events-none">
+        <SteamEffect />
+      </div>
+
       {/* Second Section - ALL CONTENT AT ONCE with ScrollFloat */}
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 py-16 bg-bao-golden">
         <div className="text-center max-w-4xl w-full">
@@ -79,10 +84,8 @@ export default function App() {
               transition={{ duration: 0.8, ease: 'easeOut' }}
               className="relative mb-8 inline-block"
             >
-              {/* Logo Container with Steam Effect */}
+              {/* Logo Container */}
               <div className="relative w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center mx-auto">
-                <SteamEffect />
-
                 {/* Golden glow background for logo visibility */}
                 <div className="absolute inset-0 bg-gradient-radial from-bao-golden/30 via-bao-golden/10 to-transparent rounded-full blur-2xl" />
 
