@@ -118,18 +118,8 @@ export default function App() {
             scale: 1,
           }}
           transition={{ delay: 1.0, duration: 0.5, type: 'spring' }}
-          className="mb-8 relative"
+          className="mb-8"
         >
-          {/* Animated gradient border wrapper */}
-          <motion.div
-            animate={{
-              rotate: [0, 360],
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-            className="absolute inset-0 rounded-full bg-gradient-to-r from-bao-golden via-white to-bao-golden blur-sm"
-            style={{ padding: '4px' }}
-          />
-
           <motion.div
             animate={{
               boxShadow: [
@@ -140,7 +130,7 @@ export default function App() {
               y: [0, -5, 0]
             }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            className="relative px-12 py-4 rounded-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900"
+            className="px-12 py-4 rounded-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border-4 border-bao-golden"
           >
             <motion.span
               animate={{

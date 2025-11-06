@@ -3,7 +3,9 @@
 ## Current Session: 2025-11-06
 
 ### Latest Changes
-- **Epic COMING SOON Badge**: Dark gradient bg, rotating golden border, glowing text, floating animation, gradient text effect - MUCH cooler!
+- **Fixed Steam Cutoff**: Removed overflow-hidden constraint, extended steam animation distance to -250px (from -150px), increased scale to 2x for smoother fluid effect
+- **Removed Rotating Border Artifact**: Replaced rotating gradient border with static golden border (border-4 border-bao-golden) on COMING SOON badge
+- **Epic COMING SOON Badge**: Dark gradient bg, pulsing glow, glowing gradient text, floating animation - clean and eye-catching!
 - **Text Contrast Fix**: "is Steaming..." typewriter remains golden (text-bao-golden), only subtitle and badge changed to dark
 - **White Plasma Steam Effect**: Changed plasma to white color (#ffffff) over solid golden yellow background (#E8B84D) - looks like steam!
 - **Real WebGL Plasma Background**: Implemented actual WebGL plasma effect using OGL library

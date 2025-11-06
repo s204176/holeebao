@@ -25,7 +25,7 @@ export default function SteamEffect() {
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div className="absolute inset-0 pointer-events-none">
       {particles.map((particle) => (
         <motion.div
           key={particle.id}
@@ -37,9 +37,9 @@ export default function SteamEffect() {
             height: `${particle.size}px`,
           }}
           animate={{
-            y: [-10, -150],
-            opacity: [0, 0.6, 0],
-            scale: [0.5, 1.2, 1.5],
+            y: [-10, -250],
+            opacity: [0, 0.6, 0.4, 0],
+            scale: [0.5, 1.2, 1.8, 2],
           }}
           transition={{
             duration: particle.duration,
