@@ -4,14 +4,14 @@
 
 ### Latest Changes (Scroll Experiment Branch)
 - **NEW EXPERIMENTAL BRANCH**: `claude/scroll-experiment-011CUpog5k5x8axH97NZAj8B` - can easily revert back to main branch
-- **Progressive Reveal Structure**: Three-section scrollable design with minimal first view
-  - Section 1: Logo + tagline ONLY (minimal landing)
-  - Section 2: COMING SOON badge + Instagram button (scroll to reveal)
-  - Section 3: "Estimated Opening Early 2026" + larger Instagram CTA (scroll more to reveal)
-- **Scroll Indicator**: Bouncing arrow with "Scroll to see what's steaming" text
-- **Gradual Blur Effect**: First section (hero) gradually blurs as you scroll down
+- **Two-Section Scroll Design**:
+  - Section 1: Minimal - just "Scroll to see what's steaming" text with gradual blur effect
+  - Section 2: ALL content at once (logo, tagline, COMING SOON, opening date, Instagram) with ScrollFloat effects
+- **ScrollFloat Effects**: Parallax scroll effects on individual elements (logo, tagline, badge, date, button) with varying speeds and directions
+- **Scroll Indicator**: Bouncing arrow below scroll prompt text
+- **Gradual Blur Effect**: First section blurs as you scroll down
 - **Fixed Threads Background**: Threads effect stays fixed while content scrolls
-- **Opening Date**: Changed from "February 2026" to "Estimated Opening Early 2026"
+- **Opening Date**: "Estimated Opening Early 2026"
 - **Threads Settings Optimized**: Set amplitude=0.6, distance=1 for subtler, more spread-out wavy threads effect
 - **Threads WebGL Effect**: Added animated wavy threads overlay using OGL library - white threads that flow across the screen with mouse interaction
 - **Typewriter Golden Glow**: Changed "is Steaming..." to white text with golden glow effect (visible on golden background while keeping the steaming aesthetic)
@@ -34,7 +34,8 @@
 
 ### Current Components
 - `Threads.tsx` - WebGL animated wavy threads effect with Perlin noise and mouse interaction
-- `ScrollIndicator.tsx` - Bouncing arrow scroll indicator with text
+- `ScrollFloat.tsx` - Parallax scroll effect component for individual elements
+- `ScrollIndicator.tsx` - Bouncing arrow scroll indicator
 - `GradualBlur.tsx` - Scroll-triggered blur effect component
 - `LoadingScreen.tsx` - Golden yellow loading screen with HOLEE BAO logo
 - `FloatingBaos.tsx` - Clickable floating baos with confetti easter egg
@@ -43,12 +44,12 @@
 - `Typewriter.tsx` - Typewriter effect for tagline
 
 ### Key Features
-- **Progressive Reveal Scroll**: Three-section design with minimal first view (experimental - easy to revert)
-  - Land with minimal content (logo + tagline)
-  - Scroll to reveal COMING SOON + Instagram
-  - Scroll more to reveal "Estimated Opening Early 2026"
-- **Gradual Blur Effect**: Hero section blurs as you scroll down
-- **Scroll Indicator**: Bouncing arrow prompts users to scroll
+- **Two-Section Scroll Design** (experimental - easy to revert):
+  - Section 1: Minimal scroll prompt "Scroll to see what's steaming"
+  - Section 2: All content at once with parallax ScrollFloat effects
+- **ScrollFloat Parallax Effects**: Individual elements float at different speeds as you scroll (logo, tagline, badge, opening date, button)
+- **Gradual Blur Effect**: First section blurs as you scroll down
+- **Scroll Indicator**: Bouncing arrow below scroll prompt
 - **Fixed Threads Background**: WebGL threads stay in place while content scrolls
 - **Threads WebGL Effect**: Animated wavy white threads overlay with mouse interaction using Perlin noise
 - Clean solid golden yellow background (#E8B84D)
