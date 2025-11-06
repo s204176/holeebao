@@ -35,7 +35,7 @@ export default function App() {
         <Threads
           color={[1, 1, 1]}
           amplitude={1}
-          distance={0}
+          distance={0.8}
           enableMouseInteraction={true}
         />
       </div>
