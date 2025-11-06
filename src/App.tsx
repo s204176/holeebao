@@ -95,7 +95,7 @@ export default function App() {
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-gray-900 mb-4">
             Something Delicious <br className="sm:hidden" />
-            <span className="text-gray-900">
+            <span className="text-bao-golden">
               <Typewriter text="is Steaming..." delay={1000} speed={100} />
             </span>
           </h1>
