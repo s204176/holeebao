@@ -4,6 +4,7 @@
 
 ### Latest Changes (Scroll Experiment Branch)
 - **NEW EXPERIMENTAL BRANCH**: `claude/scroll-experiment-011CUpog5k5x8axH97NZAj8B` - can easily revert back to main branch
+- **Fixed Duplicate Steam**: Removed steam from landing page to avoid duplicate steam effect when scrolling between sections - only logo steam in section 2 remains
 - **Enhanced Steam Effect**: Made steam bigger, more visible, and immediately active (20 particles, 50-110px size, 0.9 max opacity, negative delays for mid-cycle start)
 - **Removed Opening Date**: Deleted "Estimated Opening Early 2026" section for cleaner design
 - **Two-Section Scroll Design**:
