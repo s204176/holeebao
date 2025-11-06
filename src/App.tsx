@@ -93,7 +93,7 @@ export default function App() {
         <div className="text-center max-w-4xl w-full">
 
           {/* Logo with ScrollReveal */}
-          <ScrollReveal delay={0.3} duration={0.8} direction="up">
+          <ScrollReveal delay={0.3} duration={0.8} baseOpacity={0} enableBlur={true} blurStrength={8} baseRotation={3}>
             <div className="relative mb-8 inline-block">
               {/* Logo Container with Steam Effect */}
               <div className="relative w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center mx-auto">
@@ -138,7 +138,7 @@ export default function App() {
           </ScrollReveal>
 
           {/* Tagline with ScrollReveal */}
-          <ScrollReveal delay={0.6} duration={0.7} direction="up">
+          <ScrollReveal delay={0.6} duration={0.7} baseOpacity={0} enableBlur={true} blurStrength={10} baseRotation={2}>
             <div className="mb-8">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white mb-4">
                 Something Delicious <br className="sm:hidden" />
@@ -156,7 +156,7 @@ export default function App() {
           </ScrollReveal>
 
           {/* Instagram Button with ScrollReveal */}
-          <ScrollReveal delay={0.9} duration={0.7} direction="up">
+          <ScrollReveal delay={0.9} duration={0.7} baseOpacity={0} enableBlur={true} blurStrength={12} baseRotation={-2}>
             <motion.a
               href="https://www.instagram.com/holeebao.cph/"
               target="_blank"

@@ -5,7 +5,10 @@ interface ScrollRevealProps {
   children: ReactNode;
   delay?: number;
   duration?: number;
-  direction?: 'up' | 'down' | 'left' | 'right';
+  baseOpacity?: number;
+  enableBlur?: boolean;
+  baseRotation?: number;
+  blurStrength?: number;
   className?: string;
 }
 
@@ -13,7 +16,10 @@ export default function ScrollReveal({
   children,
   delay = 0,
   duration = 0.6,
-  direction = 'up',
+  baseOpacity = 0,
+  enableBlur = false,
+  baseRotation = 0,
+  blurStrength = 10,
   className = ''
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -21,14 +27,16 @@ export default function ScrollReveal({
 
   const variants = {
     hidden: {
-      opacity: 0,
-      y: direction === 'up' ? 40 : direction === 'down' ? -40 : 0,
-      x: direction === 'left' ? 40 : direction === 'right' ? -40 : 0,
+      opacity: baseOpacity,
+      filter: enableBlur ? `blur(${blurStrength}px)` : 'blur(0px)',
+      rotate: baseRotation,
+      y: 40,
     },
     visible: {
       opacity: 1,
+      filter: 'blur(0px)',
+      rotate: 0,
       y: 0,
-      x: 0,
     },
   };
 
