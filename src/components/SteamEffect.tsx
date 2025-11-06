@@ -13,13 +13,13 @@ export default function SteamEffect() {
   const [particles, setParticles] = useState<SteamParticle[]>([]);
 
   useEffect(() => {
-    // Generate steam particles
-    const newParticles: SteamParticle[] = Array.from({ length: 12 }, (_, i) => ({
+    // Generate steam particles - more and bigger for visibility
+    const newParticles: SteamParticle[] = Array.from({ length: 20 }, (_, i) => ({
       id: i,
-      left: 35 + Math.random() * 30, // Spread across logo area
-      delay: Math.random() * 3,
+      left: 30 + Math.random() * 40, // Spread across logo area
+      delay: (Math.random() * 5) - 2, // Negative delays so some particles are already mid-cycle
       duration: 3 + Math.random() * 2,
-      size: 20 + Math.random() * 40,
+      size: 50 + Math.random() * 60, // Bigger particles (50-110px)
     }));
     setParticles(newParticles);
   }, []);
@@ -38,8 +38,8 @@ export default function SteamEffect() {
           }}
           animate={{
             y: [-10, -250],
-            opacity: [0, 0.6, 0.4, 0],
-            scale: [0.5, 1.2, 1.8, 2],
+            opacity: [0, 0.9, 0.7, 0], // Increased opacity for better visibility
+            scale: [0.5, 1.2, 1.8, 2.2], // Slightly larger final scale
           }}
           transition={{
             duration: particle.duration,

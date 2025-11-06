@@ -184,27 +184,6 @@ export default function App() {
             </motion.div>
           </ScrollFloat>
 
-          {/* Opening Date with ScrollFloat */}
-          <ScrollFloat speed={0.6} direction="up">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="mb-12"
-            >
-              <h2
-                className="text-4xl sm:text-5xl md:text-6xl font-display font-black text-white mb-4"
-                style={{
-                  textShadow: '0 0 30px rgba(232, 184, 77, 0.8), 0 0 60px rgba(232, 184, 77, 0.4)',
-                }}
-              >
-                Estimated Opening<br />
-                <span className="text-5xl sm:text-6xl md:text-7xl">Early 2026</span>
-              </h2>
-            </motion.div>
-          </ScrollFloat>
-
           {/* Instagram Button with ScrollFloat */}
           <ScrollFloat speed={0.3} direction="down">
             <motion.a
@@ -214,7 +193,7 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-purple-600 to-pink-600

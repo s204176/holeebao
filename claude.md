@@ -4,14 +4,15 @@
 
 ### Latest Changes (Scroll Experiment Branch)
 - **NEW EXPERIMENTAL BRANCH**: `claude/scroll-experiment-011CUpog5k5x8axH97NZAj8B` - can easily revert back to main branch
+- **Enhanced Steam Effect**: Made steam bigger, more visible, and immediately active (20 particles, 50-110px size, 0.9 max opacity, negative delays for mid-cycle start)
+- **Removed Opening Date**: Deleted "Estimated Opening Early 2026" section for cleaner design
 - **Two-Section Scroll Design**:
   - Section 1: Minimal - just "Scroll to see what's steaming" text with gradual blur effect
-  - Section 2: ALL content at once (logo, tagline, COMING SOON, opening date, Instagram) with ScrollFloat effects
-- **ScrollFloat Effects**: Parallax scroll effects on individual elements (logo, tagline, badge, date, button) with varying speeds and directions
-- **Scroll Indicator**: Bouncing arrow below scroll prompt text
+  - Section 2: ALL content at once (logo, tagline, COMING SOON, Instagram) with ScrollFloat effects
+- **ScrollFloat Effects**: Parallax scroll effects on individual elements (logo, tagline, badge, button) with varying speeds and directions
+- **Scroll Indicator**: Centered bouncing arrow (no duplicate text)
 - **Gradual Blur Effect**: First section blurs as you scroll down
 - **Fixed Threads Background**: Threads effect stays fixed while content scrolls
-- **Opening Date**: "Estimated Opening Early 2026"
 - **Threads Settings Optimized**: Set amplitude=0.6, distance=1 for subtler, more spread-out wavy threads effect
 - **Threads WebGL Effect**: Added animated wavy threads overlay using OGL library - white threads that flow across the screen with mouse interaction
 - **Typewriter Golden Glow**: Changed "is Steaming..." to white text with golden glow effect (visible on golden background while keeping the steaming aesthetic)
