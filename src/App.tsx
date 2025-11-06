@@ -91,7 +91,9 @@ export default function App() {
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white mb-4">
             Something Delicious <br className="sm:hidden" />
-            <span className="text-bao-golden">
+            <span className="text-white" style={{
+              textShadow: '0 0 20px rgba(232, 184, 77, 0.8), 0 0 40px rgba(232, 184, 77, 0.5), 0 0 60px rgba(232, 184, 77, 0.3)'
+            }}>
               <Typewriter text="is Steaming..." delay={1000} speed={100} />
             </span>
           </h1>

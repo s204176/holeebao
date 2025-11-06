@@ -3,13 +3,13 @@
 ## Current Session: 2025-11-06
 
 ### Latest Changes
+- **Typewriter Golden Glow**: Changed "is Steaming..." to white text with golden glow effect (visible on golden background while keeping the steaming aesthetic)
 - **Removed Plasma Background**: Simplified to clean solid golden yellow background (#E8B84D), removed WebGL plasma effect
 - **White Text**: Changed "Something Delicious" and subtitle to white for better visibility on golden background
 - **Kept Steam Effect**: Logo steam particles still active (white steam rising from logo)
 - **Fixed Steam Cutoff**: Removed overflow-hidden constraint, extended steam animation distance to -250px (from -150px), increased scale to 2x for smoother fluid effect
 - **Removed Rotating Border Artifact**: Replaced rotating gradient border with static golden border (border-4 border-bao-golden) on COMING SOON badge
 - **Epic COMING SOON Badge**: Dark gradient bg, pulsing glow, glowing gradient text, floating animation - clean and eye-catching!
-- **Text Contrast**: "is Steaming..." typewriter remains golden (text-bao-golden)
 - **Simplified IG Button**: Replaced big Instagram card with simple gradient button
 - **Minimal Design**: Removed all extras (countdown, location, facts, visitor counter) - kept only logo, name, coming soon, IG button
 
@@ -31,7 +31,7 @@
 - Clean solid golden yellow background (#E8B84D)
 - White steam particles rising from logo
 - 3D tilt logo effect
-- Typewriter animation on tagline (golden text)
+- Typewriter animation "is Steaming..." with golden glow effect (white text with golden shadow)
 - White text for main heading and subtitle
 - Clickable floating baos (confetti easter egg)
 - Simple Instagram button with gradient
