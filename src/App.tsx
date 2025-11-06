@@ -34,8 +34,8 @@ export default function App() {
       <div className="absolute inset-0 z-0">
         <Threads
           color={[1, 1, 1]}
-          amplitude={1}
-          distance={0.8}
+          amplitude={0.6}
+          distance={1}
           enableMouseInteraction={true}
         />
       </div>

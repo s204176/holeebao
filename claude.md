@@ -3,7 +3,7 @@
 ## Current Session: 2025-11-06
 
 ### Latest Changes
-- **Threads Settings Tuned**: Set amplitude=1, distance=0.8 for more spread-out wavy threads effect
+- **Threads Settings Optimized**: Set amplitude=0.6, distance=1 for subtler, more spread-out wavy threads effect
 - **Threads WebGL Effect**: Added animated wavy threads overlay using OGL library - white threads that flow across the screen with mouse interaction
 - **Typewriter Golden Glow**: Changed "is Steaming..." to white text with golden glow effect (visible on golden background while keeping the steaming aesthetic)
 - **Golden Yellow Background**: Solid golden yellow background (#E8B84D) with Threads effect overlay
