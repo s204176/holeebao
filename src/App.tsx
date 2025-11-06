@@ -9,6 +9,7 @@ import Threads from './components/Threads';
 import ScrollIndicator from './components/ScrollIndicator';
 import GradualBlur from './components/GradualBlur';
 import ScrollReveal from './components/ScrollReveal';
+import ScrollVelocity from './components/ScrollVelocity';
 
 export default function App() {
   const [imageError, setImageError] = useState(false);
@@ -54,17 +55,21 @@ export default function App() {
       {/* First Section - MINIMAL with Gradual Blur */}
       <GradualBlur className="relative z-10 min-h-screen">
         <div className="flex flex-col items-center justify-center h-screen px-6 py-4">
-          <motion.h1
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white text-center"
-            style={{
-              textShadow: '0 0 30px rgba(232, 184, 77, 0.8), 0 0 60px rgba(232, 184, 77, 0.4)',
-            }}
           >
-            Scroll to see what's steaming
-          </motion.h1>
+            <ScrollVelocity
+              texts={["Scroll to see what's steaming"]}
+              velocity={50}
+              className="font-display font-bold text-white"
+              scrollerClassName="text-3xl sm:text-4xl md:text-5xl"
+              scrollerStyle={{
+                textShadow: '0 0 30px rgba(232, 184, 77, 0.8), 0 0 60px rgba(232, 184, 77, 0.4)',
+              }}
+            />
+          </motion.div>
 
           {/* Scroll Indicator */}
           <ScrollIndicator />
