@@ -2,9 +2,9 @@ import Plasma from './Plasma';
 
 export default function PlasmaBackground() {
   return (
-    <div className="fixed inset-0" style={{ zIndex: 0 }}>
+    <div className="fixed inset-0 bg-bao-golden" style={{ zIndex: 0 }}>
       <Plasma
-        color="#E8B84D"
+        color="#ffffff"
         speed={0.6}
         direction="forward"
         scale={1.1}

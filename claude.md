@@ -3,7 +3,8 @@
 ## Current Session: 2025-11-06
 
 ### Latest Changes
-- **Real WebGL Plasma Background**: Implemented actual WebGL plasma effect using OGL library with golden yellow color (#E8B84D)
+- **White Plasma Steam Effect**: Changed plasma to white color (#ffffff) over solid golden yellow background (#E8B84D) - looks like steam!
+- **Real WebGL Plasma Background**: Implemented actual WebGL plasma effect using OGL library
 - **Simplified IG Button**: Replaced big Instagram card with simple gradient button
 - **Minimal Design**: Removed all extras (countdown, location, facts, visitor counter) - kept only logo, name, coming soon, IG button
 
@@ -17,7 +18,7 @@
 
 ### Current Components
 - `Plasma.tsx` - WebGL plasma shader effect
-- `PlasmaBackground.tsx` - Plasma wrapper with golden yellow color
+- `PlasmaBackground.tsx` - White plasma steam effect over solid golden yellow background
 - `LoadingScreen.tsx` - Golden yellow loading screen with HOLEE BAO logo
 - `FloatingBaos.tsx` - Clickable floating baos with confetti easter egg
 - `SteamEffect.tsx` - Steam animation around logo
@@ -25,7 +26,8 @@
 - `Typewriter.tsx` - Typewriter effect for tagline
 
 ### Key Features
-- WebGL plasma background (golden yellow #E8B84D)
+- White plasma steam effect over golden yellow background (#E8B84D)
+- WebGL-based plasma using OGL library
 - 3D tilt logo effect
 - Typewriter animation on tagline
 - Clickable floating baos (confetti easter egg)
