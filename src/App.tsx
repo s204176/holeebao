@@ -1,5 +1,9 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 import SteamEffect from './components/SteamEffect';
 import FloatingBaos from './components/FloatingBaos';
 import Typewriter from './components/Typewriter';
@@ -14,6 +18,7 @@ import ScrollVelocity from './components/ScrollVelocity';
 export default function App() {
   const [imageError, setImageError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const logoRef = useRef<HTMLDivElement>(null);
 
   // Track scroll position for steam fade effects
   const { scrollY } = useScroll();
@@ -31,6 +36,52 @@ export default function App() {
     }, 2500);
 
     return () => clearTimeout(timer);
+  }, []);
+
+  // GSAP ScrollTrigger for logo blur effect
+  useEffect(() => {
+    if (!logoRef.current) return;
+
+    const logo = logoRef.current;
+
+    // Rotation animation
+    gsap.fromTo(
+      logo,
+      { transformOrigin: '50% 50%', rotate: 4 },
+      {
+        ease: 'none',
+        rotate: 0,
+        scrollTrigger: {
+          trigger: logo,
+          start: 'top bottom',
+          end: 'top center',
+          scrub: true
+        }
+      }
+    );
+
+    // Blur and opacity animation
+    gsap.fromTo(
+      logo,
+      { opacity: 0, filter: 'blur(10px)' },
+      {
+        ease: 'none',
+        opacity: 1,
+        filter: 'blur(0px)',
+        scrollTrigger: {
+          trigger: logo,
+          start: 'top bottom',
+          end: 'top center',
+          scrub: true
+        }
+      }
+    );
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.vars.trigger === logo) trigger.kill();
+      });
+    };
   }, []);
 
   return (
@@ -93,11 +144,8 @@ export default function App() {
         <div className="text-center max-w-4xl w-full">
 
           {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+          <div
+            ref={logoRef}
             className="relative mb-8 inline-block"
           >
             {/* Logo Container with Steam Effect */}
@@ -139,7 +187,7 @@ export default function App() {
                   </TiltWrapper>
                 </div>
               </div>
-          </motion.div>
+          </div>
 
           {/* Tagline with GSAP ScrollReveal */}
           <div className="mb-8">
@@ -158,7 +206,7 @@ export default function App() {
               baseOpacity={0}
               enableBlur={true}
               baseRotation={3}
-              blurStrength={2}
+              blurStrength={1}
               textClassName="text-white font-medium text-lg sm:text-xl"
             >
               Fresh steamed baos arriving soon to Copenhagen
