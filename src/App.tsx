@@ -62,7 +62,7 @@ export default function App() {
           </motion.h1>
 
           {/* Steam Effect on Landing Page */}
-          <div className="absolute bottom-[25%] left-1/2 -translate-x-1/2 w-48 h-48">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 h-48">
             <SteamEffect />
           </div>
 
