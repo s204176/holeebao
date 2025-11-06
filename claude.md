@@ -3,6 +3,8 @@
 ## Current Session: 2025-11-06
 
 ### Latest Changes
+- **Improved Text Contrast**: Changed all text to dark gray/black (text-gray-900) for better readability on golden background
+- **COMING SOON Badge**: White background with dark border and text for maximum visibility
 - **White Plasma Steam Effect**: Changed plasma to white color (#ffffff) over solid golden yellow background (#E8B84D) - looks like steam!
 - **Real WebGL Plasma Background**: Implemented actual WebGL plasma effect using OGL library
 - **Simplified IG Button**: Replaced big Instagram card with simple gradient button

@@ -93,9 +93,9 @@ export default function App() {
           transition={{ delay: 0.6, duration: 0.6 }}
           className="text-center mb-8"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-gray-800 mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-gray-900 mb-4">
             Something Delicious <br className="sm:hidden" />
-            <span className="text-bao-golden">
+            <span className="text-gray-900">
               <Typewriter text="is Steaming..." delay={1000} speed={100} />
             </span>
           </h1>
@@ -104,7 +104,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.6 }}
-            className="text-lg sm:text-xl text-bao-gray-dark font-light"
+            className="text-lg sm:text-xl text-gray-900 font-medium"
           >
             Fresh steamed baos arriving soon to Copenhagen
           </motion.p>
@@ -117,8 +117,8 @@ export default function App() {
           transition={{ delay: 1.0, duration: 0.5, type: 'spring' }}
           className="mb-8"
         >
-          <div className="px-6 py-2 rounded-full bg-bao-golden/10 border-2 border-bao-golden/30 backdrop-blur-sm">
-            <span className="text-bao-golden font-semibold text-base tracking-wider">
+          <div className="px-6 py-2 rounded-full bg-white/90 border-2 border-gray-900 backdrop-blur-sm shadow-lg">
+            <span className="text-gray-900 font-bold text-base tracking-wider">
               COMING SOON
             </span>
           </div>
