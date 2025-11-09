@@ -180,11 +180,9 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
             className="relative inline-flex items-center gap-3 px-10 py-5 bg-white
                      rounded-full overflow-hidden
-                     transition-all duration-300 shadow-2xl"
+                     transition-all duration-300 shadow-2xl hover:shadow-3xl"
           >
             {/* Shimmer effect */}
             <motion.div
