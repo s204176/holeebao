@@ -177,13 +177,13 @@ export default function App() {
             transition={{ delay: 0.6, duration: 0.6 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="relative inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-purple-600 to-pink-600
-                     text-white font-black text-2xl rounded-full overflow-hidden
+            className="relative inline-flex items-center gap-3 px-10 py-5 bg-white
+                     text-gray-900 font-black text-2xl rounded-full overflow-hidden
                      transition-all duration-300 shadow-2xl"
           >
             {/* Shimmer effect */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20"
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-200 to-transparent"
               animate={{
                 x: ['-200%', '200%'],
               }}
