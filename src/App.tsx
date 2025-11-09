@@ -177,43 +177,21 @@ export default function App() {
             transition={{ delay: 0.6, duration: 0.6 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="relative inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600
+            className="relative inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-purple-600 to-pink-600
                      text-white font-black text-2xl rounded-full overflow-hidden
-                     transition-all duration-300"
-            style={{
-              backgroundSize: '200% 100%',
-            }}
+                     transition-all duration-300 shadow-2xl"
           >
-            {/* Animated gradient background */}
+            {/* Shimmer effect */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600"
-              style={{
-                backgroundSize: '200% 100%',
-              }}
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20"
               animate={{
-                backgroundPosition: ['0% 0%', '100% 0%', '0% 0%'],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: 'linear',
-              }}
-            />
-
-            {/* Pulsing glow effect */}
-            <motion.div
-              className="absolute inset-0 rounded-full"
-              animate={{
-                boxShadow: [
-                  '0 0 20px rgba(168, 85, 247, 0.4), 0 0 40px rgba(236, 72, 153, 0.3)',
-                  '0 0 30px rgba(168, 85, 247, 0.6), 0 0 60px rgba(236, 72, 153, 0.5)',
-                  '0 0 20px rgba(168, 85, 247, 0.4), 0 0 40px rgba(236, 72, 153, 0.3)',
-                ],
+                x: ['-200%', '200%'],
               }}
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: 'easeInOut',
+                ease: 'linear',
+                repeatDelay: 1,
               }}
             />
 
