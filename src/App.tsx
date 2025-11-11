@@ -178,8 +178,8 @@ export default function App() {
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ y: -8, scale: 1.05 }}
-            whileTap={{ y: 0, scale: 0.98 }}
+            whileHover={{ y: -8, scale: 1.05, transition: { duration: 0.2, ease: 'easeOut' } }}
+            whileTap={{ y: 0, scale: 0.98, transition: { duration: 0.1 } }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ delay: 0.6, duration: 0.6 }}
             className="relative inline-flex items-center gap-3 px-10 py-5 bg-white
