@@ -69,7 +69,7 @@ export default function App() {
             <ScrollVelocity
               texts={["Scroll to see what's steaming"]}
               velocity={85}
-              className="font-display font-bold text-black px-16 py-4"
+              className="font-display font-bold text-white px-16 py-4"
               scrollerClassName="text-lg sm:text-xl md:text-2xl gap-16"
               numCopies={4}
               scrollerStyle={{
@@ -155,7 +155,7 @@ export default function App() {
               baseRotation={5}
               blurStrength={15}
               containerClassName="mb-4"
-              textClassName="text-black font-display font-bold"
+              textClassName="text-white font-display font-bold"
             >
               Something Delicious is Steaming...
             </ScrollReveal>
@@ -165,7 +165,7 @@ export default function App() {
               enableBlur={false}
               baseRotation={2}
               blurStrength={0}
-              textClassName="text-black font-medium text-lg sm:text-xl"
+              textClassName="text-white font-medium text-lg sm:text-xl"
             >
               Fresh steamed baos arriving soon to Copenhagen
             </ScrollReveal>
@@ -199,7 +199,7 @@ export default function App() {
 
             {/* Content */}
             <svg
-              className="w-8 h-8 relative z-10 flex-shrink-0"
+              className="w-8 h-8 relative z-10 flex-shrink-0 text-black"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -209,7 +209,7 @@ export default function App() {
               text="Follow @holeebao.cph"
               disabled={false}
               speed={3}
-              className="relative z-10 font-black text-2xl whitespace-nowrap"
+              className="relative z-10 font-black text-2xl whitespace-nowrap text-black"
             />
           </motion.a>
 
