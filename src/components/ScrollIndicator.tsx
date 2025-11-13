@@ -6,9 +6,9 @@ export default function ScrollIndicator() {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.5, duration: 0.6 }}
-      className="absolute bottom-8 z-20 flex flex-col items-center"
+      className="fixed bottom-8 z-20 flex flex-col items-center"
       style={{
-        left: '50%',
+        left: '50vw',
         transform: 'translateX(-50%)'
       }}
     >
