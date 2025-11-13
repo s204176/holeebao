@@ -85,14 +85,15 @@ export default function App() {
 
       {/* Landing Page Steam - Positioned at bottom, fades out on scroll */}
       <motion.div
-        className="fixed w-48 h-48 pointer-events-none z-20"
+        className="fixed left-0 right-0 pointer-events-none z-20 flex justify-center"
         style={{
-          left: 'calc(50vw - 96px)',
           top: 'calc(100vh - 3rem)',
           opacity: landingSteamOpacity
         }}
       >
-        <SteamEffect />
+        <div className="w-48 h-48">
+          <SteamEffect />
+        </div>
       </motion.div>
 
       {/* Second Section - ALL CONTENT AT ONCE with ScrollReveal */}
