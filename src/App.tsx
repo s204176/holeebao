@@ -12,6 +12,11 @@ import ScrollReveal from './components/ScrollReveal';
 import ScrollVelocity from './components/ScrollVelocity';
 import MouseSparkles from './components/MouseSparkles';
 import ShinyText from './components/ShinyText';
+import Navigation from './components/Navigation';
+import WhatMakesUsSpecial from './components/WhatMakesUsSpecial';
+import FeaturedMenuPreview from './components/FeaturedMenuPreview';
+import LocationHours from './components/LocationHours';
+import FinalCTA from './components/FinalCTA';
 
 export default function App() {
   const [imageError, setImageError] = useState(false);
@@ -42,6 +47,9 @@ export default function App() {
         <LoadingScreen key="loading" />
       ) : (
     <div key="main" className="relative min-h-screen bg-bao-golden w-full">
+      {/* Navigation */}
+      <Navigation />
+
       {/* Mouse Sparkles Effect */}
       <MouseSparkles />
 
@@ -220,6 +228,29 @@ export default function App() {
 
         </div>
       </div>
+
+      {/* New Sections */}
+
+      {/* What Makes Us Special Section */}
+      <div id="about">
+        <WhatMakesUsSpecial />
+      </div>
+
+      {/* Featured Menu Preview Section */}
+      <div id="menu">
+        <FeaturedMenuPreview />
+      </div>
+
+      {/* Location & Hours Section */}
+      <div id="location">
+        <LocationHours />
+      </div>
+
+      {/* Final CTA Section */}
+      <div id="order">
+        <FinalCTA />
+      </div>
+
     </div>
       )}
     </AnimatePresence>
