@@ -1,6 +1,13 @@
 import { motion } from 'framer-motion';
 
 export default function ScrollIndicator() {
+  const scrollToContent = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -10 }}
@@ -9,7 +16,8 @@ export default function ScrollIndicator() {
       className="fixed bottom-8 left-0 right-0 z-20 flex justify-center"
     >
       {/* Bouncing Arrow */}
-      <motion.div
+      <motion.button
+        onClick={scrollToContent}
         animate={{
           y: [0, 8, 0],
         }}
@@ -18,6 +26,9 @@ export default function ScrollIndicator() {
           repeat: Infinity,
           ease: 'easeInOut',
         }}
+        whileHover={{ scale: 1.2 }}
+        whileTap={{ scale: 0.9 }}
+        className="cursor-pointer bg-transparent border-none p-2"
       >
         <svg
           width="48"
@@ -38,7 +49,7 @@ export default function ScrollIndicator() {
             strokeLinejoin="round"
           />
         </svg>
-      </motion.div>
+      </motion.button>
     </motion.div>
   );
 }

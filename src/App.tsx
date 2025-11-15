@@ -80,6 +80,7 @@ export default function App() {
       <FloatingBaos />
 
       {/* First Section - MINIMAL with Gradual Blur */}
+      <div id="home">
       <GradualBlur className="relative z-10 min-h-screen w-full">
         <div className="flex flex-col items-center justify-center h-screen px-6 py-4 w-full">
           <motion.div
@@ -103,6 +104,7 @@ export default function App() {
           <ScrollIndicator />
         </div>
       </GradualBlur>
+      </div>
 
       {/* Landing Page Steam - Positioned at bottom, fades out on scroll */}
       <motion.div

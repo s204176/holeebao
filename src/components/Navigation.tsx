@@ -24,6 +24,14 @@ export default function Navigation() {
     { name: 'Location', href: '#location' }
   ];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <motion.nav
       style={{ backgroundColor }}
@@ -36,10 +44,11 @@ export default function Navigation() {
           {/* Logo */}
           <motion.a
             href="#home"
+            onClick={(e) => handleNavClick(e, '#home')}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-3 group cursor-pointer"
           >
             <motion.div
               whileHover={{ rotate: 360 }}
@@ -59,11 +68,12 @@ export default function Navigation() {
               <motion.a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -2 }}
-                className="text-gray-700 hover:text-bao-golden font-semibold transition-colors duration-200 relative group"
+                className="text-gray-700 hover:text-bao-golden font-semibold transition-colors duration-200 relative group cursor-pointer"
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-bao-golden group-hover:w-full transition-all duration-300" />
@@ -73,12 +83,13 @@ export default function Navigation() {
             {/* CTA Button */}
             <motion.a
               href="#order"
+              onClick={(e) => handleNavClick(e, '#order')}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="px-6 py-3 bg-gradient-to-r from-bao-golden to-yellow-600 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              className="px-6 py-3 bg-gradient-to-r from-bao-golden to-yellow-600 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
             >
               Order Now
             </motion.a>
