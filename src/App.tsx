@@ -82,10 +82,13 @@ export default function App() {
           >
             <ScrollVelocity
               texts={["Scroll to see what's steaming"]}
-              velocity={85}
+              velocity={120}
               className="font-display font-bold text-white px-16 py-4"
               scrollerClassName="text-lg sm:text-xl md:text-2xl gap-16"
               numCopies={4}
+              velocityMapping={{ input: [0, 300], output: [0, 12] }}
+              damping={20}
+              stiffness={200}
               scrollerStyle={{
                 textShadow: '0 0 30px rgba(232, 184, 77, 0.8), 0 0 60px rgba(232, 184, 77, 0.4)',
               }}
