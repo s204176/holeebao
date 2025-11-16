@@ -1,14 +1,9 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY } = useScroll();
-  const backgroundColor = useTransform(
-    scrollY,
-    [0, 100],
-    ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.95)']
-  );
 
   useEffect(() => {
     const unsubscribe = scrollY.on('change', (latest) => {
@@ -18,10 +13,10 @@ export default function Navigation() {
   }, [scrollY]);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
     { name: 'Menu', href: '#menu' },
     { name: 'About', href: '#about' },
-    { name: 'Location', href: '#location' }
+    { name: 'Location', href: '#location' },
+    { name: 'Order', href: '#order' }
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -34,70 +29,46 @@ export default function Navigation() {
 
   return (
     <motion.nav
-      style={{ backgroundColor }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'shadow-lg backdrop-blur-md' : ''
+      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
+        isScrolled ? 'top-4' : 'top-6'
       }`}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.5 }}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <motion.a
-            href="#home"
-            onClick={(e) => handleNavClick(e, '#home')}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="group cursor-pointer"
-          >
-            <span className="text-2xl font-display font-bold text-gray-900">
-              Ho Lee Bao
-            </span>
-          </motion.a>
+      <div className={`flex items-center gap-2 px-6 py-3 rounded-full backdrop-blur-xl border-2 shadow-2xl transition-all duration-500 ${
+        isScrolled
+          ? 'bg-white/95 border-gray-200'
+          : 'bg-white/80 border-white/40'
+      }`}>
+        {/* Logo */}
+        <motion.a
+          href="#home"
+          onClick={(e) => handleNavClick(e, '#home')}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="px-4 py-2 font-display font-black text-xl tracking-tight text-gray-900 cursor-pointer"
+        >
+          Ho Lee Bao
+        </motion.a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link, index) => (
-              <motion.a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -2 }}
-                className="text-gray-700 hover:text-bao-golden font-semibold transition-colors duration-200 relative group cursor-pointer"
-              >
-                {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-bao-golden group-hover:w-full transition-all duration-300" />
-              </motion.a>
-            ))}
+        {/* Divider */}
+        <div className="w-px h-6 bg-gray-300" />
 
-            {/* CTA Button */}
+        {/* Nav Links */}
+        <div className="flex items-center gap-1">
+          {navLinks.map((link) => (
             <motion.a
-              href="#order"
-              onClick={(e) => handleNavClick(e, '#order')}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-6 py-3 bg-gradient-to-r from-bao-golden to-yellow-600 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+              key={link.name}
+              href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-4 py-2 text-sm font-bold text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-all duration-200 cursor-pointer"
             >
-              Order Now
+              {link.name}
             </motion.a>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="md:hidden p-2 text-gray-900"
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </motion.button>
+          ))}
         </div>
       </div>
     </motion.nav>

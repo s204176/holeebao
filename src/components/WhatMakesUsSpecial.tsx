@@ -28,7 +28,7 @@ export default function WhatMakesUsSpecial() {
     <section className="relative min-h-screen flex items-center justify-center py-20 px-6 overflow-hidden">
       {/* Animated Background Gradient */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-b from-bao-golden via-yellow-50 to-white opacity-50"
+        className="absolute inset-0 bg-gradient-to-b from-bao-golden via-yellow-50 to-yellow-100 opacity-50"
         animate={{
           backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
         }}
