@@ -18,11 +18,9 @@ import FeaturedMenuPreview from './components/FeaturedMenuPreview';
 import LocationHours from './components/LocationHours';
 import FinalCTA from './components/FinalCTA';
 import MorphingBlobs from './components/MorphingBlobs';
-import ParticleExplosion from './components/ParticleExplosion';
 import AnimatedText from './components/AnimatedText';
 import Fireworks from './components/Fireworks';
 import ScrollProgress from './components/ScrollProgress';
-import CursorTrail from './components/CursorTrail';
 
 export default function App() {
   const [imageError, setImageError] = useState(false);
@@ -58,10 +56,8 @@ export default function App() {
 
       {/* ULTIMATE CRAZY EFFECTS */}
       <ScrollProgress />
-      <CursorTrail />
       <Fireworks />
       <MorphingBlobs />
-      <ParticleExplosion />
 
       {/* Mouse Sparkles Effect */}
       <MouseSparkles />
