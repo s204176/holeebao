@@ -30,38 +30,39 @@ export default function ScrollProgress() {
 
   return (
     <>
-      {/* Scroll indicator dots on the side */}
-      <div className="fixed right-8 top-1/2 -translate-y-1/2 z-[100] hidden md:flex flex-col gap-4">
+      {/* Minimal vertical progress bar on right */}
+      <div className="fixed right-8 top-1/2 -translate-y-1/2 z-[100] hidden md:flex flex-col gap-3">
         {sections.map((section, index) => {
           const isActive = index === activeSection;
           const isPassed = index <= activeSection;
 
           return (
-            <motion.div
+            <motion.button
               key={section.id}
-              className="group flex items-center gap-3 justify-end"
-              whileHover={{ scale: 1.2 }}
+              onClick={() => handleDotClick(section.id)}
+              className="group relative flex items-center justify-end gap-2 cursor-pointer bg-transparent border-none p-0"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
-              <span className="text-sm font-bold text-gray-800 opacity-0 group-hover:opacity-100 transition-opacity bg-white px-3 py-1 rounded-full shadow-lg border-2 border-gray-800">
-                {section.name}
-              </span>
+              {/* Line indicator */}
               <motion.div
-                className={`w-4 h-4 rounded-full cursor-pointer border-2 ${
-                  isPassed ? 'bg-gray-900 border-gray-900' : 'bg-white border-gray-400'
+                className={`h-0.5 transition-all duration-300 ${
+                  isPassed ? 'bg-gray-900' : 'bg-gray-300'
                 }`}
-                style={{
-                  boxShadow: isPassed ? '0 0 20px rgba(0, 0, 0, 0.5)' : 'none'
-                }}
                 animate={{
-                  scale: isActive ? [1, 1.4, 1] : 1
+                  width: isActive ? '24px' : '12px'
                 }}
-                transition={{
-                  duration: 0.5,
-                  repeat: isActive ? Infinity : 0
-                }}
-                onClick={() => handleDotClick(section.id)}
               />
-            </motion.div>
+
+              {/* Label tooltip */}
+              <motion.span
+                className="absolute right-8 px-3 py-1 bg-gray-900 text-white text-xs font-bold rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+                initial={{ x: 10 }}
+                whileHover={{ x: 0 }}
+              >
+                {section.name}
+              </motion.span>
+            </motion.button>
           );
         })}
       </div>
