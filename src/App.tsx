@@ -85,7 +85,7 @@ export default function App() {
 
       {/* Landing Page Steam - Positioned at bottom, fades out on scroll */}
       <motion.div
-        className="absolute left-1/2 -translate-x-1/2 w-48 h-48 pointer-events-none z-20"
+        className="absolute inset-x-0 mx-auto w-48 h-48 pointer-events-none z-20"
         style={{
           top: 'calc(100vh - 3rem)',
           opacity: landingSteamOpacity

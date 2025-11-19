@@ -6,7 +6,8 @@ export default function ScrollIndicator() {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.5, duration: 0.6 }}
-      className="absolute bottom-8 inset-x-0 mx-auto z-20 flex flex-col items-center w-fit"
+      className="absolute inset-x-0 mx-auto z-20 flex flex-col items-center w-fit"
+      style={{ bottom: 'calc(2rem + env(safe-area-inset-bottom, 0px))' }}
     >
       {/* Bouncing Arrow */}
       <motion.div
