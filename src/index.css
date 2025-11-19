@@ -5,6 +5,7 @@
 @layer base {
   html, body, #root {
     @apply h-full m-0;
+    overflow-x: hidden;
   }
 
   body {
