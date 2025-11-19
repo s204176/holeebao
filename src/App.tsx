@@ -60,7 +60,7 @@ export default function App() {
 
       {/* First Section - MINIMAL with Gradual Blur */}
       <GradualBlur className="relative z-10 min-h-screen">
-        <div className="relative flex flex-col items-center justify-center h-screen px-6 py-4">
+        <div className="relative flex flex-col items-center justify-center h-screen w-full px-6 py-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
