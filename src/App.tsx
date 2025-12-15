@@ -41,7 +41,7 @@ export default function App() {
       {isLoading ? (
         <LoadingScreen key="loading" />
       ) : (
-    <div key="main" className="relative min-h-screen bg-bao-golden">
+    <div key="main" className="relative min-h-screen bg-bao-golden overflow-x-hidden">
       {/* Mouse Sparkles Effect */}
       <MouseSparkles />
 
@@ -59,8 +59,8 @@ export default function App() {
       <FloatingBaos />
 
       {/* First Section - MINIMAL with Gradual Blur */}
-      <GradualBlur className="relative z-10 min-h-screen">
-        <div className="relative flex flex-col items-center justify-center h-screen w-full px-6 py-4">
+      <GradualBlur className="relative z-10 min-h-screen overflow-x-hidden">
+        <div className="relative flex flex-col items-center justify-center h-screen w-full px-6 py-4 overflow-x-hidden">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -95,7 +95,7 @@ export default function App() {
       </motion.div>
 
       {/* Second Section - ALL CONTENT AT ONCE with ScrollReveal */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 py-16 bg-bao-golden">
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 py-16 bg-bao-golden overflow-x-hidden">
         <div className="text-center max-w-4xl w-full">
 
           {/* Logo */}
@@ -147,29 +147,21 @@ export default function App() {
               </div>
           </motion.div>
 
-          {/* Tagline with GSAP ScrollReveal */}
-          <div className="mb-8">
-            <ScrollReveal
-              baseOpacity={0}
-              enableBlur={true}
-              baseRotation={5}
-              blurStrength={15}
-              containerClassName="mb-4"
-              textClassName="text-white font-display font-bold"
-            >
-              Something Delicious is Steaming...
-            </ScrollReveal>
-
-            <ScrollReveal
-              baseOpacity={0}
-              enableBlur={false}
-              baseRotation={2}
-              blurStrength={0}
-              textClassName="text-white font-medium text-lg sm:text-xl"
-            >
+          {/* Tagline */}
+          <motion.div
+            className="mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h2 className="text-white font-display font-bold text-3xl sm:text-4xl md:text-5xl mb-4">
+              Something Delicious <Typewriter text="is Steaming..." delay={100} />
+            </h2>
+            <p className="text-white font-medium text-lg sm:text-xl">
               Fresh steamed baos arriving soon to Copenhagen
-            </ScrollReveal>
-          </div>
+            </p>
+          </motion.div>
 
           {/* Instagram Button */}
           <motion.a

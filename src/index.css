@@ -6,10 +6,12 @@
   html {
     @apply h-full m-0;
     background-color: #FAFAFA;
+    overflow-x: hidden;
   }
 
   body, #root {
     @apply h-full m-0;
+    overflow-x: hidden;
   }
 
   body {
