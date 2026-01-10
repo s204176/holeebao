@@ -1,205 +1,231 @@
 import { motion } from 'framer-motion';
+import { useMemo } from 'react';
 
 export default function LoadingScreen() {
+  // Steam particles
+  const steamParticles = useMemo(() =>
+    [...Array(12)].map((_, i) => ({
+      id: i,
+      x: (Math.random() - 0.5) * 150,
+      delay: Math.random() * 0.4,
+      duration: 2 + Math.random() * 1,
+      size: 25 + Math.random() * 35,
+    })), []
+  );
+
   return (
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.3, delay: 2.3 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-bao-golden overflow-hidden"
+      transition={{ duration: 0.5 }}
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
+      style={{ backgroundColor: '#E8B84D' }}
     >
-      {/* Golden Glow - Behind everything */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{
-          opacity: [0, 0.3, 1, 1, 0],
-          scale: [0.8, 1, 1.8, 1.8, 1.8]
+      {/* Background texture */}
+      <div
+        className="absolute inset-0 opacity-[0.05]"
+        style={{
+          backgroundImage: `
+            repeating-linear-gradient(0deg, transparent, transparent 12px, rgba(0,0,0,0.15) 12px, rgba(0,0,0,0.15) 13px),
+            repeating-linear-gradient(90deg, transparent, transparent 12px, rgba(0,0,0,0.15) 12px, rgba(0,0,0,0.15) 13px)
+          `,
         }}
-        transition={{
-          times: [0, 0.3, 0.5, 0.88, 1],
-          duration: 2.6,
-          ease: 'easeOut'
-        }}
-        className="absolute inset-0 flex items-center justify-center z-0"
-      >
-        <div className="w-[600px] h-[600px] sm:w-[800px] sm:h-[800px] md:w-[1000px] md:h-[1000px] rounded-full bg-gradient-radial from-yellow-100 via-yellow-200/70 to-transparent blur-3xl" />
-      </motion.div>
+      />
 
-      {/* Logo Split Container */}
-      <div className="relative w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] z-10">
-        {/* Top Half - Opens Upward */}
-        <motion.div
-          initial={{ y: 0, opacity: 0, scale: 1 }}
-          animate={{
-            y: [0, 0, '-40vh', '-40vh'],
-            opacity: [0, 0.7, 0.6, 0],
-            scale: [0.9, 1, 0.8, 0.8]
-          }}
-          transition={{
-            times: [0, 0.19, 0.62, 1],
-            duration: 3.2,
-            ease: [0.16, 1, 0.3, 1]
-          }}
-          className="absolute inset-0"
-          style={{
-            clipPath: 'inset(0 0 50% 0)'
-          }}
-        >
-          <img
-            src="/images/logos/001_WnY_CMYK@4x.png"
-            alt="HO LEE BAO Top"
-            className="w-full h-full object-contain"
-          />
-        </motion.div>
-
-        {/* Bottom Half - Opens Downward */}
-        <motion.div
-          initial={{ y: 0, opacity: 0, scale: 1 }}
-          animate={{
-            y: [0, 0, '40vh', '40vh'],
-            opacity: [0, 0.7, 0.6, 0],
-            scale: [0.9, 1, 0.8, 0.8]
-          }}
-          transition={{
-            times: [0, 0.19, 0.62, 1],
-            duration: 3.2,
-            ease: [0.16, 1, 0.3, 1]
-          }}
-          className="absolute inset-0"
-          style={{
-            clipPath: 'inset(50% 0 0 0)'
-          }}
-        >
-          <img
-            src="/images/logos/001_WnY_CMYK@4x.png"
-            alt="HO LEE BAO Bottom"
-            className="w-full h-full object-contain"
-          />
-        </motion.div>
+      {/* Warm glow */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div
+          className="w-[500px] h-[500px] rounded-full blur-3xl opacity-40"
+          style={{ background: 'radial-gradient(circle, rgba(255,220,150,0.5) 0%, transparent 70%)' }}
+        />
       </div>
 
-      {/* Center Text - Revealed in gap */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.7 }}
-        animate={{
-          opacity: [0, 1, 1, 0],
-          scale: [0.7, 1, 1, 1]
-        }}
-        transition={{
-          times: [0, 0.35, 0.875, 1],
-          duration: 3.2,
-          delay: 1.2,
-          ease: 'easeOut'
-        }}
-        className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none"
-      >
-        <h1 className="text-6xl sm:text-7xl md:text-8xl font-display font-bold text-white mb-2">
-          HO LEE BAO
-        </h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0, 1, 1, 0] }}
-          transition={{
-            times: [0, 0.19, 0.875, 1],
-            duration: 3.2,
-            delay: 2.2
+      {/* Main container */}
+      <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px]">
+
+        {/* === BASKET BASE === */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4 }}
+          className="absolute inset-0 rounded-full"
+          style={{
+            background: 'linear-gradient(180deg, #D4A855 0%, #C09545 50%, #A88035 100%)',
+            boxShadow: `
+              inset 0 8px 25px rgba(255,255,255,0.2),
+              inset 0 -15px 35px rgba(0,0,0,0.25),
+              0 15px 50px rgba(0,0,0,0.3)
+            `,
           }}
-          className="text-xl sm:text-2xl text-white/80"
         >
-          蒸包
-        </motion.p>
-      </motion.div>
-
-      {/* Steam Burst Effect */}
-      <div className="absolute inset-0 z-8 pointer-events-none flex items-center justify-center">
-        {/* Ambient Steam (before opening) */}
-        {[...Array(12)].map((_, i) => {
-          const randomOffset = (Math.random() - 0.5) * 60;
-          return (
-            <motion.div
-              key={`ambient-${i}`}
-              initial={{
-                y: 0,
-                x: randomOffset,
-                opacity: 0,
-                scale: 0.4
+          {/* Inner basket floor */}
+          <div
+            className="absolute top-[10%] left-[10%] right-[10%] bottom-[10%] rounded-full"
+            style={{
+              background: 'linear-gradient(180deg, #C9A050 0%, #B89040 100%)',
+              boxShadow: 'inset 0 8px 25px rgba(0,0,0,0.2)',
+            }}
+          >
+            {/* Weave pattern */}
+            <div
+              className="absolute inset-0 rounded-full opacity-30"
+              style={{
+                backgroundImage: `
+                  repeating-linear-gradient(90deg, transparent 0px, transparent 5px, rgba(80,50,20,0.5) 5px, rgba(80,50,20,0.5) 7px),
+                  repeating-linear-gradient(0deg, transparent 0px, transparent 5px, rgba(80,50,20,0.3) 5px, rgba(80,50,20,0.3) 7px)
+                `,
               }}
+            />
+          </div>
+        </motion.div>
+
+        {/* === CONTENT REVEALED === */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 1.4, ease: [0.34, 1.56, 0.64, 1] }}
+          className="absolute inset-0 flex flex-col items-center justify-center z-10"
+        >
+          {/* Logo directly - no white circle */}
+          <img
+            src="/images/logos/001_WnY_CMYK@4x.png"
+            alt="HO LEE BAO"
+            className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain"
+            style={{ filter: 'drop-shadow(0 4px 15px rgba(0,0,0,0.2))' }}
+          />
+
+          {/* Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 1.8 }}
+            className="mt-3 text-center"
+          >
+            <h1
+              className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white"
+              style={{ textShadow: '0 2px 15px rgba(0,0,0,0.25)' }}
+            >
+              HO LEE BAO
+            </h1>
+            <p className="text-sm sm:text-base text-white/70 mt-1">蒸包</p>
+          </motion.div>
+        </motion.div>
+
+        {/* === SPLIT LID - LEFT HALF === */}
+        <motion.div
+          initial={{ x: 0, opacity: 1 }}
+          animate={{ x: '-55%', opacity: [1, 1, 0] }}
+          transition={{
+            duration: 1.2,
+            delay: 0.6,
+            ease: [0.4, 0, 0.2, 1],
+            opacity: { times: [0, 0.7, 1], duration: 1.2, delay: 0.6 }
+          }}
+          className="absolute inset-0 z-20"
+          style={{ clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)' }}
+        >
+          <div
+            className="absolute inset-0 rounded-full"
+            style={{
+              background: 'linear-gradient(180deg, #E8C870 0%, #D4A855 40%, #C49545 70%, #A88035 100%)',
+              boxShadow: 'inset 0 -15px 35px rgba(0,0,0,0.15), inset 0 15px 40px rgba(255,255,255,0.25)',
+            }}
+          >
+            {/* Weave texture */}
+            <div
+              className="absolute inset-[10%] rounded-full opacity-35"
+              style={{
+                backgroundImage: `
+                  repeating-linear-gradient(55deg, transparent 0px, transparent 4px, rgba(100,70,30,0.4) 4px, rgba(100,70,30,0.4) 6px, transparent 6px, transparent 10px),
+                  repeating-linear-gradient(-55deg, transparent 0px, transparent 4px, rgba(100,70,30,0.4) 4px, rgba(100,70,30,0.4) 6px, transparent 6px, transparent 10px)
+                `,
+              }}
+            />
+            {/* Center knob */}
+            <div
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full"
+              style={{
+                background: 'radial-gradient(ellipse at 40% 35%, #DCC070 0%, #C49545 60%, #A07830 100%)',
+                boxShadow: 'inset 0 -4px 12px rgba(0,0,0,0.2)',
+              }}
+            />
+          </div>
+        </motion.div>
+
+        {/* === SPLIT LID - RIGHT HALF === */}
+        <motion.div
+          initial={{ x: 0, opacity: 1 }}
+          animate={{ x: '55%', opacity: [1, 1, 0] }}
+          transition={{
+            duration: 1.2,
+            delay: 0.6,
+            ease: [0.4, 0, 0.2, 1],
+            opacity: { times: [0, 0.7, 1], duration: 1.2, delay: 0.6 }
+          }}
+          className="absolute inset-0 z-20"
+          style={{ clipPath: 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)' }}
+        >
+          <div
+            className="absolute inset-0 rounded-full"
+            style={{
+              background: 'linear-gradient(180deg, #E8C870 0%, #D4A855 40%, #C49545 70%, #A88035 100%)',
+              boxShadow: 'inset 0 -15px 35px rgba(0,0,0,0.15), inset 0 15px 40px rgba(255,255,255,0.25)',
+            }}
+          >
+            {/* Weave texture */}
+            <div
+              className="absolute inset-[10%] rounded-full opacity-35"
+              style={{
+                backgroundImage: `
+                  repeating-linear-gradient(55deg, transparent 0px, transparent 4px, rgba(100,70,30,0.4) 4px, rgba(100,70,30,0.4) 6px, transparent 6px, transparent 10px),
+                  repeating-linear-gradient(-55deg, transparent 0px, transparent 4px, rgba(100,70,30,0.4) 4px, rgba(100,70,30,0.4) 6px, transparent 6px, transparent 10px)
+                `,
+              }}
+            />
+            {/* Center knob */}
+            <div
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full"
+              style={{
+                background: 'radial-gradient(ellipse at 40% 35%, #DCC070 0%, #C49545 60%, #A07830 100%)',
+                boxShadow: 'inset 0 -4px 12px rgba(0,0,0,0.2)',
+              }}
+            />
+          </div>
+        </motion.div>
+
+        {/* === STEAM === */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-15">
+          {steamParticles.map((p) => (
+            <motion.div
+              key={p.id}
+              initial={{ y: 0, x: p.x, opacity: 0, scale: 0.3 }}
               animate={{
-                y: [-50, -600],
-                x: randomOffset + (Math.random() - 0.5) * 100,
-                opacity: [0, 0.6, 0.5, 0],
-                scale: [0.4, 1.2, 1.8, 2.2]
+                y: [0, -80, -200],
+                opacity: [0, 0.5, 0],
+                scale: [0.3, 1, 1.4],
               }}
               transition={{
-                times: [0, 0.25, 0.7, 1],
-                duration: 2 + Math.random() * 1,
-                repeat: Infinity,
-                delay: i * 0.12,
-                ease: 'easeOut'
+                times: [0, 0.4, 1],
+                duration: p.duration,
+                delay: 1.0 + p.delay,
+                ease: 'easeOut',
               }}
-              className="absolute w-12 h-12 rounded-full bg-white/70 blur-md"
+              className="absolute rounded-full bg-white/50 blur-lg"
+              style={{ width: p.size, height: p.size }}
             />
-          );
-        })}
-
-        {/* Burst Steam (when opening) - Larger particles */}
-        {[...Array(18)].map((_, i) => {
-          const randomSpread = (Math.random() - 0.5) * 180;
-          return (
-            <motion.div
-              key={`burst-${i}`}
-              initial={{
-                y: 0,
-                x: 0,
-                opacity: 0,
-                scale: 0.6
-              }}
-              animate={{
-                y: [-80, -700],
-                x: randomSpread,
-                opacity: [0, 0.9, 0.8, 0],
-                scale: [0.6, 1.8, 2.5, 3.0]
-              }}
-              transition={{
-                times: [0, 0.2, 0.7, 1],
-                duration: 1.6,
-                delay: 1.0 + (i * 0.06),
-                ease: 'easeOut'
-              }}
-              className="absolute w-16 h-16 rounded-full bg-white/80 blur-lg"
-            />
-          );
-        })}
-
-        {/* Extra burst effect - massive clouds */}
-        {[...Array(8)].map((_, i) => {
-          const randomSpread = (Math.random() - 0.5) * 200;
-          return (
-            <motion.div
-              key={`cloud-${i}`}
-              initial={{
-                y: 0,
-                x: 0,
-                opacity: 0,
-                scale: 0.8
-              }}
-              animate={{
-                y: [-100, -750],
-                x: randomSpread,
-                opacity: [0, 0.7, 0.6, 0],
-                scale: [0.8, 2.2, 3.0, 3.5]
-              }}
-              transition={{
-                times: [0, 0.15, 0.65, 1],
-                duration: 1.8,
-                delay: 1.0 + (i * 0.1),
-                ease: 'easeOut'
-              }}
-              className="absolute w-24 h-24 rounded-full bg-white/60 blur-2xl"
-            />
-          );
-        })}
+          ))}
+        </div>
       </div>
+
+      {/* Tagline */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.7 }}
+        transition={{ duration: 0.5, delay: 2.0 }}
+        className="absolute bottom-10 text-white/70 text-sm tracking-widest uppercase"
+      >
+        Fresh Steamed Baos
+      </motion.p>
     </motion.div>
   );
 }

@@ -19,9 +19,13 @@ export default function Navigation() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <span className="text-2xl">🥟</span>
+            <img
+              src="/images/logos/001_WnY_CMYK@4x.png"
+              alt="Holee Bao"
+              className="h-8 w-auto"
+            />
             <span className="text-white font-display font-bold text-xl group-hover:text-white/80 transition-colors">
-              HOLEE BAO
+              HO LEE BAO
             </span>
           </Link>
 

@@ -53,15 +53,15 @@ float pixel(float count, vec2 resolution) {
 }
 
 float lineFn(vec2 st, float width, float perc, float offset, vec2 mouse, float time, float amplitude, float distance) {
-    float split_offset = (perc * 0.4);
-    float split_point = 0.1 + split_offset;
+    float split_offset = (perc * 0.2);
+    float split_point = 0.0 + split_offset;
 
-    float amplitude_normal = smoothstep(split_point, 0.7, st.x);
+    float amplitude_normal = smoothstep(split_point, 0.5, st.x);
     float amplitude_strength = 0.5;
     float finalAmplitude = amplitude_normal * amplitude_strength
                            * amplitude * (1.0 + (mouse.y - 0.5) * 0.2);
 
-    float time_scaled = time / 10.0 + (mouse.x - 0.5) * 1.0;
+    float time_scaled = time / 25.0 + (mouse.x - 0.5) * 0.5;
     float blur = smoothstep(split_point, split_point + 0.05, st.x) * perc;
 
     float xnoise = mix(
