@@ -3,7 +3,7 @@ import { menuByCategory } from '../data/menuData';
 
 export default function MenuPage() {
   return (
-    <div className="min-h-screen bg-bao-golden px-6 py-24">
+    <div className="min-h-screen bg-bao-golden px-6 pt-16 pb-12">
       <div className="max-w-5xl mx-auto">
         {/* Page Header */}
         <motion.div
@@ -25,7 +25,7 @@ export default function MenuPage() {
           title="Baos"
           subtitle="1 for 39KR • 2 for 69KR • Steam or Pan Fried"
           items={menuByCategory.baos}
-          delay={0.2}
+          delay={0}
         />
 
         {/* BOWLS Section */}
@@ -33,7 +33,7 @@ export default function MenuPage() {
           title="Bowls"
           subtitle="Choose noodles or rice • 98KR"
           items={menuByCategory.bowls}
-          delay={0.3}
+          delay={0}
         />
 
         {/* TO SHARE Section */}
@@ -41,7 +41,7 @@ export default function MenuPage() {
           title="To Share"
           subtitle="Small plates for the table"
           items={menuByCategory.toShare}
-          delay={0.4}
+          delay={0}
         />
 
         {/* SPECIALS Section */}
@@ -49,7 +49,7 @@ export default function MenuPage() {
           title="Weekend Specials"
           subtitle="Available Saturdays & Sundays only"
           items={menuByCategory.specials}
-          delay={0.5}
+          delay={0}
           badge="Weekend Only"
         />
 
@@ -58,7 +58,7 @@ export default function MenuPage() {
           title="Dessert"
           subtitle="Sweet endings"
           items={menuByCategory.desserts}
-          delay={0.6}
+          delay={0}
         />
 
         {/* DRINKS Section */}
@@ -66,7 +66,7 @@ export default function MenuPage() {
           title="Drinks"
           subtitle="Coffee & more"
           items={menuByCategory.drinks}
-          delay={0.7}
+          delay={0}
         />
       </div>
     </div>
@@ -86,8 +86,7 @@ function MenuSection({ title, subtitle, items, delay, badge }: MenuSectionProps)
     <motion.section
       className="mb-16"
       initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay }}
     >
       <div className="mb-8 relative">
@@ -110,8 +109,7 @@ function MenuSection({ title, subtitle, items, delay, badge }: MenuSectionProps)
             key={item.id}
             className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/15 transition-all duration-300 border border-white/20"
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: delay + index * 0.1 }}
             whileHover={{ scale: 1.02, y: -4 }}
           >

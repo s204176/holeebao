@@ -308,7 +308,7 @@ export default function HomePage() {
       </section>
 
       {/* ============ LOCATION & FOOTER SECTION ============ */}
-      <section className="py-24 px-6 border-t border-white/10">
+      <section className="pt-24 pb-12 px-6 border-t border-white/10">
         <div className="max-w-5xl mx-auto">
           {/* Location Header */}
           <motion.div

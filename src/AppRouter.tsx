@@ -15,7 +15,41 @@ function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Force scroll to top immediately
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+    // Aggressive backup scrolls to override any animations/layout shifts
+    const timers = [
+      setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 10),
+      setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 50),
+      setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 100),
+      setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 200),
+      setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 400),
+    ];
+
+    return () => timers.forEach(clearTimeout);
   }, [pathname]);
 
   return null;
@@ -35,20 +69,15 @@ export default function AppRouter() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Fade out and blur Threads background as user scrolls
+  // Fade out Threads background as user scrolls (no blur - causes uneven waves)
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const fadeStart = 100; // Start fading after 100px
       const fadeEnd = 600; // Fully faded by 600px
       const opacity = Math.max(0, 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart));
-      setThreadsOpacity(Math.min(1, Math.max(0.15, opacity))); // Min opacity of 0.15
-
-      // Add blur effect as user scrolls (0px to 8px blur)
-      const blurStart = 50;
-      const blurEnd = 500;
-      const blur = Math.min(8, Math.max(0, (scrollY - blurStart) / (blurEnd - blurStart) * 8));
-      setThreadsBlur(blur);
+      setThreadsOpacity(Math.min(1, Math.max(0.5, opacity))); // Min opacity of 0.5
+      setThreadsBlur(0); // No blur - keeps waves clean and even
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
