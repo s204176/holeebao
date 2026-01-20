@@ -87,7 +87,7 @@ export default function MenuPage() {
 
         {/* WEEKEND SPECIAL TEASER */}
         <motion.section
-          className="mt-16 mb-12"
+          className="mt-16 mb-12 cv-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.0 }}
@@ -176,7 +176,7 @@ interface MenuSectionProps {
 function MenuSection({ title, subtitle, items, delay, badge, startNumber = 1, hideNumbers = false }: MenuSectionProps) {
   return (
     <motion.section
-      className="mb-16"
+      className="mb-16 cv-auto"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay }}
@@ -204,16 +204,24 @@ function MenuSection({ title, subtitle, items, delay, badge, startNumber = 1, hi
             {/* Image */}
             {item.image && (
               <div className="aspect-[4/3] bg-white/5 relative overflow-hidden">
-                <img
-                  src={`/images/menu/${item.image}.png`}
-                  alt={item.name}
-                  className="w-full h-full object-cover menu-image"
-                  loading="lazy"
-                  decoding="async"
-                  onLoad={(event) => {
-                    event.currentTarget.classList.add('is-loaded');
-                  }}
-                />
+                <picture className="block w-full h-full">
+                  <source
+                    type="image/webp"
+                    srcSet={`/images/menu/optimized/${item.image}-480.webp 480w, /images/menu/optimized/${item.image}-768.webp 768w, /images/menu/optimized/${item.image}-1024.webp 1024w`}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <img
+                    src={`/images/menu/${item.image}.png`}
+                    alt={item.name}
+                    className="w-full h-full object-cover menu-image"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                    onLoad={(event) => {
+                      event.currentTarget.classList.add('is-loaded');
+                    }}
+                  />
+                </picture>
               </div>
             )}
 

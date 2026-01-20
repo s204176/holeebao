@@ -39,7 +39,7 @@ function ScrollToTop() {
   return null;
 }
 
-function BackgroundEffects() {
+function BackgroundEffects({ enabled }: { enabled: boolean }) {
   const location = useLocation();
   const [threadsOpacity, setThreadsOpacity] = useState(1);
   const [threadsBlur, setThreadsBlur] = useState(0);
@@ -47,26 +47,50 @@ function BackgroundEffects() {
   // Only show on home and menu pages
   const showBackground = location.pathname === '/' || location.pathname === '/menu';
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const fadeStart = 100; // Start fading after 100px
-      const fadeEnd = 600; // Fully faded by 600px
-      const opacity = Math.max(0, 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart));
-      setThreadsOpacity(Math.min(1, Math.max(0.15, opacity))); // Min opacity of 0.15
+  if (!enabled || !showBackground) return null;
 
-      // Add blur effect as user scrolls (0px to 8px blur)
+  useEffect(() => {
+    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    const blurMax = isCoarsePointer ? 3 : 8;
+    const opacityMin = 0.2;
+    let rafId = 0;
+    let lastOpacity = 1;
+    let lastBlur = 0;
+
+    const applyScroll = () => {
+      rafId = 0;
+      const scrollY = window.scrollY;
+      const fadeStart = 100;
+      const fadeEnd = 600;
+      const opacity = Math.max(0, 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart));
+      const nextOpacity = Math.min(1, Math.max(opacityMin, opacity));
+
       const blurStart = 50;
       const blurEnd = 500;
-      const blur = Math.min(8, Math.max(0, (scrollY - blurStart) / (blurEnd - blurStart) * 8));
-      setThreadsBlur(blur);
+      const blur = Math.min(blurMax, Math.max(0, (scrollY - blurStart) / (blurEnd - blurStart) * blurMax));
+
+      if (Math.abs(nextOpacity - lastOpacity) > 0.01) {
+        lastOpacity = nextOpacity;
+        setThreadsOpacity(nextOpacity);
+      }
+      if (Math.abs(blur - lastBlur) > 0.2) {
+        lastBlur = blur;
+        setThreadsBlur(blur);
+      }
+    };
+
+    const handleScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(applyScroll);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    applyScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
-
-  if (!showBackground) return null;
 
   return (
     <>
@@ -91,14 +115,31 @@ function BackgroundEffects() {
 
 export default function AppRouter() {
   const [isLoading, setIsLoading] = useState(true);
+  const [effectsEnabled, setEffectsEnabled] = useState(false);
 
   useEffect(() => {
-    // Show loading screen for 4 seconds - let steamer lid animation complete
+    // Keep the intro short so first paint feels fast.
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 4000);
+    }, 1200);
 
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const enable = () => setEffectsEnabled(true);
+    const timer = setTimeout(enable, 1200);
+
+    const onScroll = () => {
+      enable();
+      window.removeEventListener('scroll', onScroll);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   return (
@@ -117,7 +158,7 @@ export default function AppRouter() {
             className="relative min-h-screen bg-bao-golden overflow-x-hidden w-full max-w-full"
           >
             {/* Background Effects - Only on Home and Menu pages */}
-            <BackgroundEffects />
+            <BackgroundEffects enabled={effectsEnabled} />
 
             {/* Navigation */}
             <Navigation />

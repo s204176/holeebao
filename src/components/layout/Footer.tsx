@@ -25,6 +25,8 @@ export default function Footer({ className = '', delay = 0 }: FooterProps) {
           <img
             src="/images/logos/001_Y_CMYK@4x.png"
             alt="HO LEE BAO"
+            loading="lazy"
+            decoding="async"
             className="w-20 h-20 object-contain"
           />
         </div>

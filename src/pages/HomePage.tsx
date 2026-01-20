@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import SteamEffect from '../components/effects/SteamEffect';
 import TiltWrapper from '../components/effects/TiltWrapper';
 import Footer from '../components/layout/Footer';
@@ -91,12 +91,29 @@ export default function HomePage() {
   const emailUser = 'info';
   const emailDomain = ['holeebao', 'dk'].join('.');
   const emailAddress = `${emailUser}@${emailDomain}`;
+  const [steamEnabled, setSteamEnabled] = useState(false);
 
   // Force scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
+  }, []);
+
+  useEffect(() => {
+    const enable = () => setSteamEnabled(true);
+    const timer = setTimeout(enable, 1000);
+
+    const onScroll = () => {
+      enable();
+      window.removeEventListener('scroll', onScroll);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   return (
@@ -137,9 +154,11 @@ export default function HomePage() {
           >
             <div className="relative w-[240px] h-[240px] sm:w-[320px] sm:h-[320px] md:w-[400px] md:h-[400px] lg:w-[480px] lg:h-[480px] flex items-center justify-center mx-auto">
               {/* Enhanced Steam Effect */}
-              <div className="absolute inset-0 scale-150">
-                <SteamEffect />
-              </div>
+              {steamEnabled && (
+                <div className="absolute inset-0 scale-150">
+                  <SteamEffect />
+                </div>
+              )}
 
               {/* Massive golden glow */}
               <div className="absolute inset-0 bg-gradient-radial from-bao-golden/40 via-bao-golden/20 to-transparent rounded-full blur-3xl scale-125" />
@@ -150,6 +169,9 @@ export default function HomePage() {
                   <img
                     src="/images/logos/001_WnY_CMYK@4x.png"
                     alt="HO LEE BAO"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
                     className="w-full h-full object-contain drop-shadow-2xl"
                     style={{
                       filter: 'drop-shadow(0 0 30px rgba(232, 184, 77, 0.7)) drop-shadow(0 0 60px rgba(232, 184, 77, 0.4))',
@@ -196,7 +218,7 @@ export default function HomePage() {
 
       {/* ============ MENU PREVIEW SECTION ============ */}
       <motion.section
-        className="py-24 px-6 w-full max-w-full overflow-x-hidden"
+        className="py-24 px-6 w-full max-w-full overflow-x-hidden cv-auto"
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, amount: 0.2 }}
@@ -229,16 +251,24 @@ export default function HomePage() {
               >
                 {/* Image */}
                 <div className="aspect-[16/10] bg-bao-golden/20 relative overflow-hidden">
-                  <img
-                    src={`/images/menu/${item.image}.png`}
-                    alt={item.name}
-                    className="w-full h-full object-cover menu-image"
-                    loading="lazy"
-                    decoding="async"
-                    onLoad={(event) => {
-                      event.currentTarget.classList.add('is-loaded');
-                    }}
-                  />
+                  <picture className="block w-full h-full">
+                    <source
+                      type="image/webp"
+                      srcSet={`/images/menu/optimized/${item.image}-480.webp 480w, /images/menu/optimized/${item.image}-768.webp 768w, /images/menu/optimized/${item.image}-1024.webp 1024w`}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <img
+                      src={`/images/menu/${item.image}.png`}
+                      alt={item.name}
+                      className="w-full h-full object-cover menu-image"
+                      loading="lazy"
+                      decoding="async"
+                      fetchPriority="low"
+                      onLoad={(event) => {
+                        event.currentTarget.classList.add('is-loaded');
+                      }}
+                    />
+                  </picture>
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-bao-golden/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
@@ -300,7 +330,7 @@ export default function HomePage() {
       </motion.section>
 
       {/* ============ PHILOSOPHY SECTION ============ */}
-      <section className="py-24 px-6 w-full max-w-full overflow-x-hidden">
+      <section className="py-24 px-6 w-full max-w-full overflow-x-hidden cv-auto">
         <div className="max-w-4xl mx-auto">
           {/* Quote */}
           <motion.div
@@ -346,7 +376,7 @@ export default function HomePage() {
       </section>
 
       {/* ============ LOCATION & FOOTER SECTION ============ */}
-      <section className="pt-16 pb-4 px-6 border-t border-white/10 w-full max-w-full overflow-x-hidden">
+      <section className="pt-16 pb-4 px-6 border-t border-white/10 w-full max-w-full overflow-x-hidden cv-auto">
         <div className="max-w-5xl mx-auto">
           {/* Location Header */}
           <motion.div

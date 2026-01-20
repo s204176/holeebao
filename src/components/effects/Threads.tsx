@@ -211,7 +211,15 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
       container.addEventListener('mouseleave', handleMouseLeave);
     }
 
+    let lastFrameTime = 0;
+    const frameInterval = isCoarsePointer ? 1000 / 30 : 0;
+
     function update(t: number) {
+      if (frameInterval && t - lastFrameTime < frameInterval) {
+        animationFrameId.current = requestAnimationFrame(update);
+        return;
+      }
+      lastFrameTime = t;
       if (allowMouseInteraction) {
         const smoothing = 0.05;
         currentMouse[0] += smoothing * (targetMouse[0] - currentMouse[0]);
