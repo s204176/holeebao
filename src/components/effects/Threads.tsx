@@ -133,7 +133,14 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     if (!containerRef.current) return;
     const container = containerRef.current;
 
-    const renderer = new Renderer({ alpha: true });
+    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const timeScale = prefersReducedMotion ? 0.2 : isCoarsePointer ? 0.45 : 1;
+    const amplitudeScale = isCoarsePointer ? 0.7 : 1;
+    const distanceScale = isCoarsePointer ? 0.85 : 1;
+    const dpr = Math.min(isCoarsePointer ? 1.5 : 2, window.devicePixelRatio || 1);
+
+    const renderer = new Renderer({ alpha: true, dpr });
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);
@@ -150,26 +157,45 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
           value: new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height)
         },
         uColor: { value: new Color(...color) },
-        uAmplitude: { value: amplitude },
-        uDistance: { value: distance },
+        uAmplitude: { value: amplitude * amplitudeScale },
+        uDistance: { value: distance * distanceScale },
         uMouse: { value: new Float32Array([0.5, 0.5]) }
       }
     });
 
     const mesh = new Mesh(gl, { geometry, program });
 
-    function resize() {
+    let lastWidth = 0;
+    let lastHeight = 0;
+    let resizeRaf = 0;
+    const sizeThreshold = isCoarsePointer ? 24 : 2;
+
+    function applySize() {
       const { clientWidth, clientHeight } = container;
+      if (!clientWidth || !clientHeight) return;
+      if (Math.abs(clientWidth - lastWidth) < sizeThreshold && Math.abs(clientHeight - lastHeight) < sizeThreshold) {
+        return;
+      }
+      lastWidth = clientWidth;
+      lastHeight = clientHeight;
       renderer.setSize(clientWidth, clientHeight);
       program.uniforms.iResolution.value.r = clientWidth;
       program.uniforms.iResolution.value.g = clientHeight;
       program.uniforms.iResolution.value.b = clientWidth / clientHeight;
     }
+
+    function resize() {
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(applySize);
+    }
+
     window.addEventListener('resize', resize);
-    resize();
+    window.visualViewport?.addEventListener('resize', resize);
+    applySize();
 
     let currentMouse = [0.5, 0.5];
     let targetMouse = [0.5, 0.5];
+    const allowMouseInteraction = enableMouseInteraction && !isCoarsePointer;
 
     function handleMouseMove(e: MouseEvent) {
       const rect = container.getBoundingClientRect();
@@ -180,13 +206,13 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     function handleMouseLeave() {
       targetMouse = [0.5, 0.5];
     }
-    if (enableMouseInteraction) {
+    if (allowMouseInteraction) {
       container.addEventListener('mousemove', handleMouseMove);
       container.addEventListener('mouseleave', handleMouseLeave);
     }
 
     function update(t: number) {
-      if (enableMouseInteraction) {
+      if (allowMouseInteraction) {
         const smoothing = 0.05;
         currentMouse[0] += smoothing * (targetMouse[0] - currentMouse[0]);
         currentMouse[1] += smoothing * (targetMouse[1] - currentMouse[1]);
@@ -196,7 +222,7 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
         program.uniforms.uMouse.value[0] = 0.5;
         program.uniforms.uMouse.value[1] = 0.5;
       }
-      program.uniforms.iTime.value = t * 0.001;
+      program.uniforms.iTime.value = t * 0.001 * timeScale;
 
       renderer.render({ scene: mesh });
       animationFrameId.current = requestAnimationFrame(update);
@@ -206,8 +232,10 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     return () => {
       if (animationFrameId.current) cancelAnimationFrame(animationFrameId.current);
       window.removeEventListener('resize', resize);
+      window.visualViewport?.removeEventListener('resize', resize);
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
 
-      if (enableMouseInteraction) {
+      if (allowMouseInteraction) {
         container.removeEventListener('mousemove', handleMouseMove);
         container.removeEventListener('mouseleave', handleMouseLeave);
       }
