@@ -150,7 +150,7 @@ export default function AppRouter() {
       ) : (
         <BrowserRouter key="main">
           <motion.div
-            initial={{ opacity: 0, scale: 0.96, filter: 'blur(8px)' }}
+            initial={{ opacity: 1, scale: 0.96, filter: 'blur(8px)' }}
             animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
             transition={{
               duration: 1.0,
