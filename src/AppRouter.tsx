@@ -50,7 +50,7 @@ function BackgroundEffects({ enabled }: { enabled: boolean }) {
   useEffect(() => {
     if (!enabled || !showBackground) return;
     const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
-    const blurMax = isCoarsePointer ? 3 : 8;
+    const blurMax = isCoarsePointer ? 3 : 0;
     const opacityMin = 0.2;
     let rafId = 0;
     let lastOpacity = 1;
@@ -99,7 +99,7 @@ function BackgroundEffects({ enabled }: { enabled: boolean }) {
         className="fixed inset-0 z-0 transition-all duration-150"
         style={{
           opacity: threadsOpacity,
-          filter: `blur(${threadsBlur}px)`,
+          ...(threadsBlur > 0 ? { filter: `blur(${threadsBlur}px)` } : {}),
         }}
       >
         <Threads

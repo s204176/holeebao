@@ -47,6 +47,21 @@ export default function Footer({ className = '', delay = 0 }: FooterProps) {
             {emailAddress}
           </button>
           <a
+            href="https://www.findsmiley.dk/1514698"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center"
+            aria-label="Inspection report"
+          >
+            <img
+              src="/images/findsmiley.gif"
+              alt="Inspection report"
+              loading="lazy"
+              decoding="async"
+              className="h-10 w-auto"
+            />
+          </a>
+          <a
             href="https://instagram.com/holeebao"
             target="_blank"
             rel="noopener noreferrer"

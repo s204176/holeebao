@@ -23,9 +23,9 @@ uniform vec2 uMouse;
 
 #define PI 3.1415926538
 
-const int u_line_count = 40;
-const float u_line_width = 7.0;
-const float u_line_blur = 10.0;
+const int u_line_count = 24;
+const float u_line_width = 5.0;
+const float u_line_blur = 6.0;
 
 float Perlin2D(vec2 P) {
     vec2 Pi = floor(P);
@@ -123,9 +123,17 @@ interface ThreadsProps {
   amplitude?: number;
   distance?: number;
   enableMouseInteraction?: boolean;
+  maxFps?: number;
 }
 
-const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseInteraction = false, ...rest }: ThreadsProps) => {
+const Threads = ({
+  color = [1, 1, 1],
+  amplitude = 1,
+  distance = 0,
+  enableMouseInteraction = false,
+  maxFps = 30,
+  ...rest
+}: ThreadsProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationFrameId = useRef<number>();
 
@@ -138,7 +146,7 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     const timeScale = prefersReducedMotion ? 0.2 : isCoarsePointer ? 0.45 : 1;
     const amplitudeScale = isCoarsePointer ? 0.7 : 1;
     const distanceScale = isCoarsePointer ? 0.85 : 1;
-    const dpr = Math.min(isCoarsePointer ? 1.5 : 2, window.devicePixelRatio || 1);
+    const dpr = Math.min(isCoarsePointer ? 1.25 : 1.1, window.devicePixelRatio || 1);
 
     const renderer = new Renderer({ alpha: true, dpr });
     const gl = renderer.gl;
@@ -212,10 +220,11 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     }
 
     let lastFrameTime = 0;
-    const frameInterval = isCoarsePointer ? 1000 / 30 : 0;
+    const safeMaxFps = Math.max(1, maxFps);
+    const frameInterval = 1000 / safeMaxFps;
 
     function update(t: number) {
-      if (frameInterval && t - lastFrameTime < frameInterval) {
+      if (t - lastFrameTime < frameInterval) {
         animationFrameId.current = requestAnimationFrame(update);
         return;
       }
@@ -250,7 +259,7 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
       if (container.contains(gl.canvas)) container.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, [color, amplitude, distance, enableMouseInteraction]);
+  }, [color, amplitude, distance, enableMouseInteraction, maxFps]);
 
   return <div ref={containerRef} className="w-full h-full relative" {...rest} />;
 };
