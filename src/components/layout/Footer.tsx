@@ -6,7 +6,7 @@ interface FooterProps {
 }
 
 export default function Footer({ className = '', delay = 0 }: FooterProps) {
-  const baseClassName = 'py-4 border-t border-white/10';
+  const baseClassName = 'py-2 border-t border-white/10';
   const combinedClassName = `${baseClassName} ${className}`.trim();
   const emailUser = 'info';
   const emailDomain = ['holeebao', 'dk'].join('.');
