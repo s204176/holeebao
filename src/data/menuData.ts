@@ -176,6 +176,16 @@ export const baos: MenuItem[] = [
     availability: 'everyday',
     image: '12',
   },
+  {
+    id: 'bao-char-siu',
+    name: 'Char Siu Bao',
+    description: 'Sweet and savory BBQ pork',
+    priceOption: '1 for 30KR / 3 for 70KR',
+    category: 'bao',
+    cookingMethod: 'steamed',
+    availability: 'everyday',
+    image: '13',
+  },
 ];
 
 // COFFEE & DRINKS

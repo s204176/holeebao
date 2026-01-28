@@ -8,13 +8,13 @@ import Footer from '../components/layout/Footer';
 // Featured menu items for preview
 const featuredItems = [
   {
-    id: 'bao-pork',
-    name: 'Pork Bao',
-    description: 'Savory pork filling',
+    id: 'bao-char-siu',
+    name: 'Char Siu Bao',
+    description: 'Sweet and savory BBQ pork',
     price: '30KR',
     tag: 'SIGNATURE',
     tagColor: 'bg-red-100 text-red-700',
-    image: '12',
+    image: '13',
   },
   {
     id: 'rice-braised-beef',
